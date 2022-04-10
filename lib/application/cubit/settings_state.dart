@@ -4,35 +4,35 @@ part of 'settings_cubit.dart';
 class SettingsState {
   final String rebrickableUsername;
   final String rebrickablePassword;
-  final String rebrickableApiToken;
+  final String rebrickableApiKey;
 
   factory SettingsState.fromJson(Map<String, dynamic> json) {
     return SettingsState(
       rebrickableUsername: json['rebrickableUsername'] ?? '',
       rebrickablePassword: json['rebrickablePassword'] ?? '',
-      rebrickableApiToken: json['rebrickableApiToken'] ?? '',
+      rebrickableApiKey: json['rebrickableApiKey'] ?? '',
     );
   }
 
   const SettingsState(
       {required this.rebrickableUsername,
       required this.rebrickablePassword,
-      required this.rebrickableApiToken});
+      required this.rebrickableApiKey});
 
   Map<String, dynamic> toJson() {
     return {
       'rebrickableUsername': rebrickableUsername,
       'rebrickablePassword': rebrickablePassword,
-      'rebrickableApiToken': rebrickableApiToken
+      'rebrickableApiKey': rebrickableApiKey
     };
   }
 
   SettingsState copyWith(
           {String? rebrickableUsername,
           String? rebrickablePassword,
-          String? rebrickableApiToken}) =>
+          String? rebrickableApiKey}) =>
       SettingsState(
           rebrickableUsername: rebrickableUsername ?? this.rebrickableUsername,
           rebrickablePassword: rebrickablePassword ?? this.rebrickablePassword,
-          rebrickableApiToken: rebrickableApiToken ?? this.rebrickableApiToken);
+          rebrickableApiKey: rebrickableApiKey ?? this.rebrickableApiKey);
 }

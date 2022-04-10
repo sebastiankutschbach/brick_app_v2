@@ -21,7 +21,7 @@ class SettingsPage extends StatelessWidget {
                 tiles: [
                   _rebrickableUsernameTile(state),
                   _rebrickablePasswordTile(state),
-                  _rebrickableApiTokenTile(state)
+                  _rebrickableApiKeyTile(state)
                 ],
               ),
             ],
@@ -69,21 +69,21 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  SettingsTile _rebrickableApiTokenTile(SettingsState state) {
+  SettingsTile _rebrickableApiKeyTile(SettingsState state) {
     return SettingsTile.navigation(
       leading: const Icon(Icons.token),
-      title: const Text('API Token'),
+      title: const Text('API Key'),
       value: Text(
-        state.rebrickableApiToken,
+        state.rebrickableApiKey,
       ),
       onPressed: (context) {
         _displayTextInputDialog(
           context,
-          title: 'Enter API token',
-          hint: 'Rebrickable API token',
-          initialValue: state.rebrickableApiToken,
+          title: 'Enter API Key',
+          hint: 'Rebrickable API Key',
+          initialValue: state.rebrickableApiKey,
           onChanged: (value) =>
-              context.read<SettingsCubit>().setRebrickableApiToken(value),
+              context.read<SettingsCubit>().setrebrickableApiKey(value),
         );
       },
     );

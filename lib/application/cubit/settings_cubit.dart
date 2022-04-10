@@ -8,7 +8,7 @@ class SettingsCubit extends HydratedCubit<SettingsState> {
       : super(const SettingsState(
             rebrickableUsername: '',
             rebrickablePassword: '',
-            rebrickableApiToken: ''));
+            rebrickableApiKey: ''));
 
   @override
   SettingsState fromJson(Map<String, dynamic> json) =>
@@ -25,7 +25,7 @@ class SettingsCubit extends HydratedCubit<SettingsState> {
     emit(state.copyWith(rebrickablePassword: value));
   }
 
-  void setRebrickableApiToken(String value) {
-    emit(state.copyWith(rebrickableApiToken: value));
+  void setrebrickableApiKey(String value) {
+    emit(state.copyWith(rebrickableApiKey: value));
   }
 }
