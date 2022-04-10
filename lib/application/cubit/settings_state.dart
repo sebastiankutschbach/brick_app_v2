@@ -1,7 +1,7 @@
 part of 'settings_cubit.dart';
 
 @immutable
-class SettingsState {
+class SettingsState extends Equatable {
   final String rebrickableUsername;
   final String rebrickablePassword;
   final String rebrickableApiKey;
@@ -35,4 +35,8 @@ class SettingsState {
           rebrickableUsername: rebrickableUsername ?? this.rebrickableUsername,
           rebrickablePassword: rebrickablePassword ?? this.rebrickablePassword,
           rebrickableApiKey: rebrickableApiKey ?? this.rebrickableApiKey);
+
+  @override
+  List<Object?> get props =>
+      [rebrickableUsername, rebrickablePassword, rebrickableApiKey];
 }
