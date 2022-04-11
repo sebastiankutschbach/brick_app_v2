@@ -1,5 +1,6 @@
 import 'package:brick_app_v2/application/cubit/home_page_cubit.dart';
 import 'package:brick_app_v2/domain/set_list.dart';
+import 'package:brick_app_v2/injection.dart';
 import 'package:brick_app_v2/presentation/widgets/brick_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<HomePageCubit>(
-      create: (context) => HomePageCubit()..loadSetLists(),
+      create: (context) => getIt<HomePageCubit>()..loadSetLists(),
       child: BlocBuilder<HomePageCubit, HomePageState>(
         builder: (context, state) {
           return Scaffold(

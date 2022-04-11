@@ -1,9 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 part 'settings_state.dart';
 
+@Injectable()
 class SettingsCubit extends HydratedCubit<SettingsState> {
   SettingsCubit()
       : super(const SettingsState(

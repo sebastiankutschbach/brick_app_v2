@@ -5,7 +5,9 @@ import 'package:brick_app_v2/infrastructure/rebrickable/rebrickable_api_constant
 import 'package:brick_app_v2/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable()
 class UserTokenRepository {
   Future<Either<Failure, String>> getUserToken(
       {required String username, required String password}) async {
