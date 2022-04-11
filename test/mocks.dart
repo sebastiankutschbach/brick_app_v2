@@ -1,7 +1,12 @@
+import 'package:bloc_test/bloc_test.dart';
+import 'package:brick_app_v2/application/cubit/authentication_cubit.dart';
 import 'package:brick_app_v2/infrastructure/rebrickable/set_list_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mocktail/mocktail.dart';
+
+class MockAuthenticationCubit extends MockCubit<AuthenticationState>
+    implements AuthenticationCubit {}
 
 class MockSetListRepository extends Mock implements SetListRepository {}
 

@@ -1,3 +1,4 @@
+import 'package:brick_app_v2/application/cubit/authentication_cubit.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -7,7 +8,9 @@ part 'settings_state.dart';
 
 @Injectable()
 class SettingsCubit extends HydratedCubit<SettingsState> {
-  SettingsCubit()
+  final AuthenticationCubit _authenticationCubit;
+
+  SettingsCubit(this._authenticationCubit)
       : super(const SettingsState(
             rebrickableUsername: '',
             rebrickablePassword: '',
@@ -22,13 +25,26 @@ class SettingsCubit extends HydratedCubit<SettingsState> {
 
   void setRebrickableUsername(String value) {
     emit(state.copyWith(rebrickableUsername: value));
+    _loginIfPossible();
   }
 
   void setRebrickablePassword(String value) {
     emit(state.copyWith(rebrickablePassword: value));
+    _loginIfPossible();
   }
 
-  void setrebrickableApiKey(String value) {
+  void setRebrickableApiKey(String value) {
     emit(state.copyWith(rebrickableApiKey: value));
+    _loginIfPossible();
+  }
+
+  void _loginIfPossible() {
+    if (state.rebrickableUsername.isNotEmpty &&
+        state.rebrickablePassword.isNotEmpty &&
+        state.rebrickableApiKey.isNotEmpty) {
+      _authenticationCubit.login(
+          username: state.rebrickableUsername,
+          password: state.rebrickablePassword);
+    }
   }
 }

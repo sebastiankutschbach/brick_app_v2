@@ -83,7 +83,7 @@ class SettingsPage extends StatelessWidget {
           hint: 'Rebrickable API Key',
           initialValue: state.rebrickableApiKey,
           onChanged: (value) =>
-              context.read<SettingsCubit>().setrebrickableApiKey(value),
+              context.read<SettingsCubit>().setRebrickableApiKey(value),
         );
       },
     );

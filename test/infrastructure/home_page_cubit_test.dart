@@ -11,8 +11,9 @@ import 'package:mocktail/mocktail.dart';
 import '../mocks.dart';
 
 main() {
-  final SetListRepository setListRepository = MockSetListRepository();
   const aSetList = SetList('id', 'name', 1);
+
+  final SetListRepository setListRepository = MockSetListRepository();
 
   setUpAll(() {
     getIt.allowReassignment = true;
