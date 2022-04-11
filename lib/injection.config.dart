@@ -23,8 +23,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   final registerModule = _$RegisterModule();
   gh.factory<_i3.Dio>(() => registerModule.dio);
   gh.factory<_i4.UserTokenRepository>(() => _i4.UserTokenRepository());
-  gh.factory<_i5.AuthenticationCubit>(
-      () => _i5.AuthenticationCubit(get<_i4.UserTokenRepository>()));
+  gh.factory<_i5.AuthenticationCubit>(() =>
+      _i5.AuthenticationCubit(get<_i3.Dio>(), get<_i4.UserTokenRepository>()));
   gh.factory<_i6.SetListRepository>(() =>
       _i6.SetListRepository(get<_i3.Dio>(), get<_i5.AuthenticationCubit>()));
   gh.factory<_i7.SettingsCubit>(

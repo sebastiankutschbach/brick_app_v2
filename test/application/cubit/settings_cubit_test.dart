@@ -82,6 +82,6 @@ main() {
   }, verify: (cubit) {
     expect(cubit.state.rebrickableApiKey, apiKey);
     verify(() => mockAuthenticationCubit.login(
-        username: username, password: password)).called(1);
+        username: username, password: password, apiKey: apiKey)).called(1);
   });
 }

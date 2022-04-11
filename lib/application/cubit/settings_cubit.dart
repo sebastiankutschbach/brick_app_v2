@@ -44,7 +44,8 @@ class SettingsCubit extends HydratedCubit<SettingsState> {
         state.rebrickableApiKey.isNotEmpty) {
       _authenticationCubit.login(
           username: state.rebrickableUsername,
-          password: state.rebrickablePassword);
+          password: state.rebrickablePassword,
+          apiKey: state.rebrickableApiKey);
     }
   }
 }
