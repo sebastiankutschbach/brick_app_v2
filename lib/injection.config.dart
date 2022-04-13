@@ -10,10 +10,11 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import 'application/cubit/authentication_cubit.dart' as _i7;
 import 'application/cubit/home_page_cubit.dart' as _i8;
+import 'application/cubit/set_list_page_cubit.dart' as _i9;
 import 'application/cubit/settings_cubit.dart' as _i5;
 import 'infrastructure/rebrickable/set_list_repository.dart' as _i4;
 import 'infrastructure/rebrickable/user_token_repository.dart' as _i6;
-import 'injection.dart' as _i9; // ignore_for_file: unnecessary_lambdas
+import 'injection.dart' as _i10; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -32,7 +33,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i5.SettingsCubit>()));
   gh.factory<_i8.HomePageCubit>(() => _i8.HomePageCubit(
       get<_i4.SetListRepository>(), get<_i7.AuthenticationCubit>()));
+  gh.factory<_i9.SetListPageCubit>(() => _i9.SetListPageCubit(
+      get<_i4.SetListRepository>(), get<_i7.AuthenticationCubit>()));
   return get;
 }
 
-class _$DioModule extends _i9.DioModule {}
+class _$DioModule extends _i10.DioModule {}

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:brick_app_v2/domain/failure.dart';
+import 'package:brick_app_v2/domain/set.dart';
 import 'package:brick_app_v2/domain/set_list.dart';
 import 'package:brick_app_v2/infrastructure/rebrickable/rebrickable_api_constants.dart';
 import 'package:dartz/dartz.dart';
@@ -18,7 +19,6 @@ class SetListRepository {
     try {
       final response =
           await _dio.get(setListsUrlTemplate.expand({'user_token': userToken}));
-      log('Got response from requesting set list for user token ($userToken): ${response.data}');
 
       final results = List<SetList>.from(
         response.data['results'].map(
@@ -28,6 +28,24 @@ class SetListRepository {
       return right(results);
     } on DioError catch (e) {
       log('Error while loading set lists for userToken: $userToken: ${e.message}');
+      return left(Failure(e.message));
+    }
+  }
+
+  Future<Either<Failure, List<Set>>> getSetList(
+      String userToken, int setListId) async {
+    try {
+      final response = await _dio.get(userSetListDetailsUrlTemplate
+          .expand({'user_token': userToken, 'list_id': setListId}));
+
+      final results = List<Set>.from(
+        response.data['results'].map(
+          (result) => Set.fromJson(result['set']),
+        ),
+      );
+      return right(results);
+    } on DioError catch (e) {
+      log('Error while loading set list for userToken ($userToken) and listId ($setListId): ${e.message}');
       return left(Failure(e.message));
     }
   }
