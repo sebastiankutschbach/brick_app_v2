@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
   _bodyFrom(BuildContext context, HomePageState state) {
     switch (state.runtimeType) {
       case HomePageLoading:
-        return const Center(child: CircularProgressIndicator());
+        return _loadingBody(context, state as HomePageLoading);
       case HomePageError:
         return _errorBody(context, state as HomePageError);
       case HomePageLoaded:
@@ -42,8 +42,14 @@ class HomePage extends StatelessWidget {
     }
   }
 
+  _loadingBody(BuildContext context, HomePageLoading state) {
+    return const Center(
+        key: Key('setListLoading'), child: CircularProgressIndicator());
+  }
+
   _errorBody(BuildContext context, HomePageError state) {
     return Center(
+      key: const Key('setListError'),
       child: Text(
           'There was an error while loading your set lists: ${state.failure.message}'),
     );
@@ -61,6 +67,7 @@ class HomePage extends StatelessWidget {
 
   _buildSetListTile(BuildContext context, SetList setList) {
     return ListTile(
+      key: Key('setListTile-${setList.id}'),
       leading: const Icon(Icons.list),
       title: Text(setList.name),
       subtitle: Text('${setList.numberSets} sets'),

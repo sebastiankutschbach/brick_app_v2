@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:brick_app_v2/application/cubit/authentication_cubit.dart';
+import 'package:brick_app_v2/application/cubit/home_page_cubit.dart';
 import 'package:brick_app_v2/application/cubit/settings_cubit.dart';
 import 'package:brick_app_v2/infrastructure/rebrickable/set_list_repository.dart';
 import 'package:brick_app_v2/infrastructure/rebrickable/user_token_repository.dart';
@@ -12,6 +13,9 @@ class MockAuthenticationCubit extends MockCubit<AuthenticationState>
 
 class MockSettingsCubit extends MockCubit<SettingsState>
     implements SettingsCubit {}
+
+class MockHomePageCubit extends MockCubit<HomePageState>
+    implements HomePageCubit {}
 
 class MockSetListRepository extends Mock implements SetListRepository {}
 
