@@ -9,6 +9,12 @@ final getIt = GetIt.instance;
 void configureDependencies() => $initGetIt(getIt);
 
 @module
-abstract class RegisterModule {
-  Dio get dio => Dio();
+abstract class DioModule {
+  late Dio _dio;
+
+  DioModule() {
+    _dio = Dio();
+  }
+
+  Dio get dio => _dio;
 }

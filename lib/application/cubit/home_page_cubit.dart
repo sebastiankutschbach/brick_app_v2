@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:brick_app_v2/application/cubit/authentication_cubit.dart';
 import 'package:brick_app_v2/domain/failure.dart';
 import 'package:brick_app_v2/domain/set_list.dart';
 import 'package:brick_app_v2/infrastructure/rebrickable/set_list_repository.dart';
@@ -10,12 +11,14 @@ part 'home_page_state.dart';
 
 @Injectable()
 class HomePageCubit extends Cubit<HomePageState> {
-  final SetListRepository setListRepository;
+  final SetListRepository _setListRepository;
+  final AuthenticationCubit _authenticationCubit;
 
-  HomePageCubit(this.setListRepository) : super(HomePageLoading());
+  HomePageCubit(this._setListRepository, this._authenticationCubit)
+      : super(HomePageLoading());
 
-  Future<void> loadSetLists() async {
-    final loadResult = await setListRepository.getAllSetLists();
+  Future<void> loadSetLists(String userToken) async {
+    final loadResult = await _setListRepository.getAllSetLists(userToken);
     loadResult.fold(
       (failure) => emit(
         HomePageError(failure),
@@ -23,6 +26,14 @@ class HomePageCubit extends Cubit<HomePageState> {
       (setLists) => emit(
         HomePageLoaded(setLists),
       ),
+    );
+  }
+
+  Future<void> syncSetLists() async {
+    final userTokenResponse = await _authenticationCubit.userToken;
+    userTokenResponse.fold(
+      (failure) => emit(HomePageError(failure)),
+      (userToken) async => await loadSetLists(userToken),
     );
   }
 }

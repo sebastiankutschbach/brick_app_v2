@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<HomePageCubit>(
-      create: (context) => getIt<HomePageCubit>()..loadSetLists(),
+      create: (context) => getIt<HomePageCubit>(),
       child: BlocBuilder<HomePageCubit, HomePageState>(
         builder: (context, state) {
           return Scaffold(
@@ -19,6 +19,10 @@ class HomePage extends StatelessWidget {
               const Text('Home'),
             ),
             body: _bodyFrom(context, state),
+            floatingActionButton: FloatingActionButton(
+              child: const Icon(Icons.sync),
+              onPressed: () => context.read<HomePageCubit>().syncSetLists(),
+            ),
           );
         },
       ),
@@ -37,17 +41,9 @@ class HomePage extends StatelessWidget {
   }
 
   _errorBody(BuildContext context, HomePageError state) {
-    return RefreshIndicator(
-      onRefresh: () => context.read<HomePageCubit>().loadSetLists(),
-      child: SingleChildScrollView(
-        physics: AlwaysScrollableScrollPhysics(),
-        child: Container(
-          child: Center(
-            child: Text('There was an error while loading your Set Lists'),
-          ),
-          height: MediaQuery.of(context).size.height,
-        ),
-      ),
+    return Center(
+      child: Text(
+          'There was an error while loading your set lists: ${state.failure.message}'),
     );
   }
 

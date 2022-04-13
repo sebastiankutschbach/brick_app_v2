@@ -1,4 +1,6 @@
-import 'package:brick_app_v2/application/cubit/authentication_cubit.dart';
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:brick_app_v2/domain/failure.dart';
 import 'package:brick_app_v2/domain/set_list.dart';
 import 'package:brick_app_v2/infrastructure/rebrickable/rebrickable_api_constants.dart';
@@ -9,25 +11,25 @@ import 'package:injectable/injectable.dart';
 @Injectable()
 class SetListRepository {
   final Dio _dio;
-  final AuthenticationCubit _authenticationCubit;
 
-  SetListRepository(this._dio, this._authenticationCubit);
+  SetListRepository(this._dio);
 
-  Future<Either<Failure, List<SetList>>> getAllSetLists() async {
-    if (_authenticationCubit.state is AuthenticationAuthenticated) {
-      final userToken =
-          (_authenticationCubit.state as AuthenticationAuthenticated).userToken;
-      try {
-        final response = await _dio
-            .get(setListsUrlTemplate.expand({'user_token': userToken}));
+  Future<Either<Failure, List<SetList>>> getAllSetLists(
+      String userToken) async {
+    try {
+      final response =
+          await _dio.get(setListsUrlTemplate.expand({'user_token': userToken}));
+      log('Got response from requesting set list for user token ($userToken): ${response.data}');
 
-        print(response.data);
-        return right([]);
-      } on DioError catch (e) {
-        return left(Failure(e.message));
-      }
-    } else {
-      return left(const Failure('Unauthenticated'));
+      final results = List<SetList>.from(
+        response.data['results'].map(
+          (result) => SetList.fromJson(result),
+        ),
+      );
+      return right(results);
+    } on DioError catch (e) {
+      log('Error while loading set lists for userToken: $userToken: ${e.message}');
+      return left(Failure(e.message));
     }
   }
 }
