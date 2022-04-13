@@ -1,8 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:brick_app_v2/application/cubit/authentication_cubit.dart';
 import 'package:brick_app_v2/application/cubit/settings_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
 
 import '../../mocks.dart';
 
@@ -11,11 +9,9 @@ main() {
   const password = 'password';
   const apiKey = 'apiKey';
 
-  late AuthenticationCubit mockAuthenticationCubit = MockAuthenticationCubit();
-
   blocTest<SettingsCubit, SettingsState>('settings are empty initially',
       build: () => mockHydratedStorage<SettingsCubit>(
-            () => SettingsCubit(MockAuthenticationCubit()),
+            () => SettingsCubit(),
           ),
       verify: (cubit) {
         expect(cubit.state.rebrickableUsername, '');
@@ -26,7 +22,7 @@ main() {
   blocTest<SettingsCubit, SettingsState>(
       'setting the username emits a new state',
       build: () => mockHydratedStorage<SettingsCubit>(
-            () => SettingsCubit(mockAuthenticationCubit),
+            () => SettingsCubit(),
           ),
       act: (cubit) => cubit.setRebrickableUsername(username),
       expect: () => [
@@ -41,8 +37,7 @@ main() {
 
   blocTest<SettingsCubit, SettingsState>(
       'setting the password emits a new state',
-      build: () => mockHydratedStorage<SettingsCubit>(
-          () => SettingsCubit(mockAuthenticationCubit)),
+      build: () => mockHydratedStorage<SettingsCubit>(() => SettingsCubit()),
       act: (cubit) => cubit.setRebrickablePassword(password),
       expect: () => [
             const SettingsState(
@@ -57,7 +52,7 @@ main() {
   blocTest<SettingsCubit, SettingsState>(
       'setting the api key emits a new state',
       build: () => mockHydratedStorage<SettingsCubit>(
-            () => SettingsCubit(mockAuthenticationCubit),
+            () => SettingsCubit(),
           ),
       act: (cubit) => cubit.setRebrickableApiKey(apiKey),
       expect: () => [

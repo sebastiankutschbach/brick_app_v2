@@ -1,4 +1,3 @@
-import 'package:brick_app_v2/application/cubit/authentication_cubit.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -8,9 +7,7 @@ part 'settings_state.dart';
 
 @Injectable()
 class SettingsCubit extends HydratedCubit<SettingsState> {
-  final AuthenticationCubit _authenticationCubit;
-
-  SettingsCubit(this._authenticationCubit)
+  SettingsCubit()
       : super(const SettingsState(
             rebrickableUsername: '',
             rebrickablePassword: '',
