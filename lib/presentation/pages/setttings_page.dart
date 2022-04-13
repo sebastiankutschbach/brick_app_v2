@@ -101,6 +101,7 @@ class SettingsPage extends StatelessWidget {
         context: context,
         builder: (context) {
           return AlertDialog(
+            key: const Key('textInputDialog'),
             title: Text(title),
             content: TextFormField(
               onChanged: onChanged,

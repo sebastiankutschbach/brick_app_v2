@@ -37,6 +37,18 @@ main() {
   );
 
   testWidgets(
+    "does show input dialog when clicking on the username",
+    (WidgetTester tester) async {
+      await tester.pumpWidget(_createTestableWidget());
+      await tester.tap(find.byKey(const Key('rebrickableUsername')));
+
+      await tester.pump();
+
+      expect(find.byKey(const Key('textInputDialog')), findsOneWidget);
+    },
+  );
+
+  testWidgets(
     "does show an entry for password",
     (WidgetTester tester) async {
       await tester.pumpWidget(_createTestableWidget());
@@ -45,10 +57,34 @@ main() {
   );
 
   testWidgets(
+    "does show input dialog when clicking on the password",
+    (WidgetTester tester) async {
+      await tester.pumpWidget(_createTestableWidget());
+      await tester.tap(find.byKey(const Key('rebrickablePassword')));
+
+      await tester.pump();
+
+      expect(find.byKey(const Key('textInputDialog')), findsOneWidget);
+    },
+  );
+
+  testWidgets(
     "does show an entry for api key",
     (WidgetTester tester) async {
       await tester.pumpWidget(_createTestableWidget());
       expect(find.byKey(const Key('rebrickableApiKey')), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    "does show input dialog when clicking on the api key",
+    (WidgetTester tester) async {
+      await tester.pumpWidget(_createTestableWidget());
+      await tester.tap(find.byKey(const Key('rebrickableApiKey')));
+
+      await tester.pump();
+
+      expect(find.byKey(const Key('textInputDialog')), findsOneWidget);
     },
   );
 }
