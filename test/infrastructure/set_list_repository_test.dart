@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:brick_app_v2/infrastructure/rebrickable/rebrickable_api_constants.dart';
 import 'package:brick_app_v2/infrastructure/rebrickable/set_list_repository.dart';
 import 'package:dio/dio.dart';
@@ -8,7 +6,6 @@ import 'package:http_mock_adapter/http_mock_adapter.dart';
 
 main() {
   const userToken = 'userToken';
-  const apiKey = 'apiKey';
 
   final Dio dio = Dio();
   final dioAdapter = DioAdapter(dio: dio);
