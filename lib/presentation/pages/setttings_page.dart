@@ -33,6 +33,7 @@ class SettingsPage extends StatelessWidget {
 
   SettingsTile _rebrickableUsernameTile(SettingsState state) {
     return SettingsTile.navigation(
+      key: const Key('rebrickableUsername'),
       leading: const Icon(Icons.person),
       title: const Text('Username'),
       value: Text(state.rebrickableUsername),
@@ -51,6 +52,7 @@ class SettingsPage extends StatelessWidget {
 
   SettingsTile _rebrickablePasswordTile(SettingsState state) {
     return SettingsTile.navigation(
+      key: const Key('rebrickablePassword'),
       leading: const Icon(Icons.lock),
       title: const Text('Password'),
       value: Text(
@@ -71,6 +73,7 @@ class SettingsPage extends StatelessWidget {
 
   SettingsTile _rebrickableApiKeyTile(SettingsState state) {
     return SettingsTile.navigation(
+      key: const Key('rebrickableApiKey'),
       leading: const Icon(Icons.token),
       title: const Text('API Key'),
       value: Text(

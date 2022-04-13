@@ -1,4 +1,5 @@
-import 'package:brick_app_v2/presentation/pages/setttings_page.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:brick_app_v2/app_router.dart';
 import 'package:flutter/material.dart';
 
 class BrickAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -23,10 +24,7 @@ class BrickAppBar extends StatelessWidget with PreferredSizeWidget {
   IconButton _createSettingsButton(BuildContext context) {
     return IconButton(
         key: const Key('brickAppBarSettings'),
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const SettingsPage()));
-        },
+        onPressed: () => AutoRouter.of(context).push(const SettingsRoute()),
         icon: const Icon(Icons.settings));
   }
 }

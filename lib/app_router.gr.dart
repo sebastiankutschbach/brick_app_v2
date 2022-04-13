@@ -21,6 +21,10 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const HomePage());
     },
+    SettingsRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const SettingsPage());
+    },
     SetListRoute.name: (routeData) {
       final args = routeData.argsAs<SetListRouteArgs>();
       return MaterialPageX<dynamic>(
@@ -32,6 +36,7 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig(HomeRoute.name, path: '/'),
+        RouteConfig(SettingsRoute.name, path: '/settings-page'),
         RouteConfig(SetListRoute.name, path: '/set-list-page')
       ];
 }
@@ -42,6 +47,14 @@ class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute() : super(HomeRoute.name, path: '/');
 
   static const String name = 'HomeRoute';
+}
+
+/// generated route for
+/// [SettingsPage]
+class SettingsRoute extends PageRouteInfo<void> {
+  const SettingsRoute() : super(SettingsRoute.name, path: '/settings-page');
+
+  static const String name = 'SettingsRoute';
 }
 
 /// generated route for
