@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:brick_app_v2/app_router.dart';
 import 'package:brick_app_v2/application/cubit/home_page_cubit.dart';
 import 'package:brick_app_v2/domain/set_list.dart';
 import 'package:brick_app_v2/injection.dart';
@@ -59,8 +61,12 @@ class HomePage extends StatelessWidget {
 
   _buildSetListTile(BuildContext context, SetList setList) {
     return ListTile(
+      leading: const Icon(Icons.list),
       title: Text(setList.name),
       subtitle: Text('${setList.numberSets} sets'),
+      onTap: () => AutoRouter.of(context).push(
+        SetListRoute(setList: setList),
+      ),
     );
   }
 }
