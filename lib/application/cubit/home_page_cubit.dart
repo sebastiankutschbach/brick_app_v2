@@ -17,7 +17,7 @@ class HomePageCubit extends Cubit<HomePageState> {
   HomePageCubit(this._setListRepository, this._authenticationCubit)
       : super(HomePageLoading());
 
-  Future<void> loadSetLists(String userToken) async {
+  Future<void> _loadSetLists(String userToken) async {
     final loadResult = await _setListRepository.getAllSetLists(userToken);
     loadResult.fold(
       (failure) => emit(
@@ -29,11 +29,11 @@ class HomePageCubit extends Cubit<HomePageState> {
     );
   }
 
-  Future<void> syncSetLists() async {
+  Future<void> loadSetLists() async {
     final userTokenResponse = await _authenticationCubit.userToken;
     userTokenResponse.fold(
       (failure) => emit(HomePageError(failure)),
-      (userToken) async => await loadSetLists(userToken),
+      (userToken) async => await _loadSetLists(userToken),
     );
   }
 }

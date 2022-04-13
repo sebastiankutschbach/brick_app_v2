@@ -4,7 +4,6 @@ import 'package:brick_app_v2/application/cubit/home_page_cubit.dart';
 import 'package:brick_app_v2/domain/failure.dart';
 import 'package:brick_app_v2/domain/set_list.dart';
 import 'package:brick_app_v2/infrastructure/rebrickable/set_list_repository.dart';
-import 'package:brick_app_v2/injection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -19,8 +18,8 @@ main() {
   final AuthenticationCubit _authenticationCubit = MockAuthenticationCubit();
 
   setUpAll(() {
-    getIt.allowReassignment = true;
-    getIt.registerSingleton(setListRepository);
+    when(() => _authenticationCubit.userToken)
+        .thenAnswer((_) async => right(userToken));
   });
 
   blocTest<HomePageCubit, HomePageState>(
@@ -39,7 +38,7 @@ main() {
           .thenAnswer((_) async => right([aSetList]));
       return HomePageCubit(setListRepository, _authenticationCubit);
     },
-    act: (cubit) => cubit.loadSetLists(userToken),
+    act: (cubit) => cubit.loadSetLists(),
     expect: () => [
       HomePageLoaded(
         const [aSetList],
@@ -54,7 +53,7 @@ main() {
           .thenAnswer((_) async => left(const Failure('error')));
       return HomePageCubit(setListRepository, _authenticationCubit);
     },
-    act: (cubit) => cubit.loadSetLists(userToken),
+    act: (cubit) => cubit.loadSetLists(),
     expect: () => [
       HomePageError(
         const Failure('error'),

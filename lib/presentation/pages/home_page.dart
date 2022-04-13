@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
             body: _bodyFrom(context, state),
             floatingActionButton: FloatingActionButton(
               child: const Icon(Icons.sync),
-              onPressed: () => context.read<HomePageCubit>().syncSetLists(),
+              onPressed: () => context.read<HomePageCubit>().loadSetLists(),
             ),
           );
         },
