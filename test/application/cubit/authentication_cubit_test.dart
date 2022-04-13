@@ -33,7 +33,8 @@ main() {
       build: () {
         when(() => _userTokenRepository.getUserToken(
             username: username,
-            password: password)).thenAnswer((_) async => right(userToken));
+            password: password,
+            apiKey: apiKey)).thenAnswer((_) async => right(userToken));
         return AuthenticationCubit(_dio, _userTokenRepository);
       },
       act: (cubit) =>
@@ -46,7 +47,7 @@ main() {
       'emits unauthenticated on failed login',
       build: () {
         when(() => _userTokenRepository.getUserToken(
-                username: username, password: password))
+                username: username, password: password, apiKey: apiKey))
             .thenAnswer((_) async => left(const Failure('error')));
         return AuthenticationCubit(_dio, _userTokenRepository);
       },

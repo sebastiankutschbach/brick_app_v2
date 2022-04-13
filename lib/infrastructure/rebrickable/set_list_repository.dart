@@ -2,7 +2,6 @@ import 'package:brick_app_v2/application/cubit/authentication_cubit.dart';
 import 'package:brick_app_v2/domain/failure.dart';
 import 'package:brick_app_v2/domain/set_list.dart';
 import 'package:brick_app_v2/infrastructure/rebrickable/rebrickable_api_constants.dart';
-import 'package:brick_app_v2/infrastructure/rebrickable/user_token_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';

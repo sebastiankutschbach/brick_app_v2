@@ -9,6 +9,7 @@ main() {
   const userToken = 'userToken';
   const username = 'username';
   const password = 'password';
+  const apiKey = 'apiKey';
 
   test('fetches user token with username and password', () async {
     final dio = Dio();
@@ -18,15 +19,15 @@ main() {
     getIt.registerSingleton<Dio>(dio);
 
     dioAdapter.onPost(userTokenUrl.toString(),
-        (request) => request.reply(201, {'user_token': userToken}), data: {
-      'username': username,
-      'password': password
-    }, headers: {
-      Headers.contentTypeHeader: Headers.formUrlEncodedContentType
-    });
+        (request) => request.reply(201, {'user_token': userToken}),
+        data: 'username=$username&password=$password',
+        headers: {
+          Headers.contentTypeHeader: Headers.formUrlEncodedContentType,
+          'Authorization': 'key $apiKey'
+        });
 
     final result = await UserTokenRepository()
-        .getUserToken(username: username, password: password);
+        .getUserToken(username: username, password: password, apiKey: apiKey);
 
     expect(result.isRight(), true);
     expect(result.getOrElse(() => fail('should not happen')), userToken);
@@ -41,16 +42,14 @@ main() {
 
     dioAdapter.onPost(
         userTokenUrl.toString(), (request) => request.reply(429, 'Error'),
-        data: {
-          'username': username,
-          'password': password
-        },
+        data: 'username=$username&password=$password',
         headers: {
-          Headers.contentTypeHeader: Headers.formUrlEncodedContentType
+          Headers.contentTypeHeader: Headers.formUrlEncodedContentType,
+          'Authorization': 'key $apiKey',
         });
 
     final result = await UserTokenRepository()
-        .getUserToken(username: username, password: password);
+        .getUserToken(username: username, password: password, apiKey: apiKey);
 
     expect(result.isLeft(), true);
     result.fold((failure) => expect(failure.message, 'Http status error [429]'),

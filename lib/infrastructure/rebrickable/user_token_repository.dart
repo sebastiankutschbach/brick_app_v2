@@ -10,13 +10,16 @@ import 'package:injectable/injectable.dart';
 @Injectable()
 class UserTokenRepository {
   Future<Either<Failure, String>> getUserToken(
-      {required String username, required String password}) async {
+      {required String username,
+      required String password,
+      required String apiKey}) async {
     try {
       final response = await getIt<Dio>().postUri(userTokenUrl,
           options: Options(headers: {
-            Headers.contentTypeHeader: Headers.formUrlEncodedContentType
+            Headers.contentTypeHeader: Headers.formUrlEncodedContentType,
+            'Authorization': 'key $apiKey'
           }),
-          data: {'username': username, 'password': password});
+          data: 'username=$username&password=$password');
       return right(response.data['user_token']);
     } on DioError catch (e) {
       log('Error retrieving user token: ${e.message}');

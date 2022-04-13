@@ -18,8 +18,9 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       {required String username,
       required String password,
       required String apiKey}) async {
+    print('trying to log in');
     final response = await _userTokenRepository.getUserToken(
-        username: username, password: password);
+        username: username, password: password, apiKey: apiKey);
     response.fold((failure) {
       _dio.options.headers['Authorization'] = null;
       emit(AuthenticationUnauthenticated());
