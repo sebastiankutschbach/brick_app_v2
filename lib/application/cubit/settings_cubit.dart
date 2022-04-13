@@ -25,27 +25,13 @@ class SettingsCubit extends HydratedCubit<SettingsState> {
 
   void setRebrickableUsername(String value) {
     emit(state.copyWith(rebrickableUsername: value));
-    _loginIfPossible();
   }
 
   void setRebrickablePassword(String value) {
     emit(state.copyWith(rebrickablePassword: value));
-    _loginIfPossible();
   }
 
   void setRebrickableApiKey(String value) {
     emit(state.copyWith(rebrickableApiKey: value));
-    _loginIfPossible();
-  }
-
-  void _loginIfPossible() {
-    if (state.rebrickableUsername.isNotEmpty &&
-        state.rebrickablePassword.isNotEmpty &&
-        state.rebrickableApiKey.isNotEmpty) {
-      _authenticationCubit.login(
-          username: state.rebrickableUsername,
-          password: state.rebrickablePassword,
-          apiKey: state.rebrickableApiKey);
-    }
   }
 }

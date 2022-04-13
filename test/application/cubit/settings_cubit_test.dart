@@ -69,19 +69,4 @@ main() {
       verify: (cubit) {
         expect(cubit.state.rebrickableApiKey, apiKey);
       });
-
-  blocTest<SettingsCubit, SettingsState>(
-      'logs in when all credentials are provided', build: () {
-    return mockHydratedStorage<SettingsCubit>(
-      () => SettingsCubit(mockAuthenticationCubit),
-    );
-  }, act: (cubit) {
-    cubit.setRebrickableUsername(username);
-    cubit.setRebrickablePassword(password);
-    cubit.setRebrickableApiKey(apiKey);
-  }, verify: (cubit) {
-    expect(cubit.state.rebrickableApiKey, apiKey);
-    verify(() => mockAuthenticationCubit.login(
-        username: username, password: password, apiKey: apiKey)).called(1);
-  });
 }
