@@ -6,6 +6,7 @@ import 'package:brick_app_v2/domain/set_list.dart';
 import 'package:brick_app_v2/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 
 import '../mocks.dart';
 
@@ -18,6 +19,7 @@ main() {
   Widget _createTestableWidget() {
     getIt.allowReassignment = true;
     getIt.registerSingleton<HomePageCubit>(cubit);
+    when(() => cubit.loadSetLists()).thenAnswer((_) async => []);
 
     _appRouter.replace(const HomeRoute());
 

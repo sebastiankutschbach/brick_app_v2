@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<HomePageCubit>(
-      create: (context) => getIt<HomePageCubit>(),
+      create: (context) => getIt<HomePageCubit>()..loadSetLists(),
       child: BlocBuilder<HomePageCubit, HomePageState>(
         builder: (context, state) {
           return Scaffold(
