@@ -41,12 +41,12 @@ class MocListPage extends StatelessWidget {
 
   _loadingBody(BuildContext context, MocListPageLoading state) {
     return const Center(
-        key: Key('setListLoading'), child: CircularProgressIndicator());
+        key: Key('mocListLoading'), child: CircularProgressIndicator());
   }
 
   _errorBody(BuildContext context, MocListPageError state) {
     return Center(
-      key: const Key('setListError'),
+      key: const Key('mocListError'),
       child: Text(
           'There was an error while loading your set lists: ${state.failure.message}'),
     );
