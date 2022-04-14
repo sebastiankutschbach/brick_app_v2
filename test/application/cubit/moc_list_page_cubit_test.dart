@@ -14,24 +14,24 @@ main() {
   const String setNum = '1';
   const Failure failure = Failure('429');
 
-  final BrickSetRepositoryFacade _brickSetRepository = MockBrickSetRepository();
-  final MocRepositoryFacade _mocRepository = MockMocRepository();
+  final BrickSetRepositoryFacade brickSetRepository = MockBrickSetRepository();
+  final MocRepositoryFacade mocRepository = MockMocRepository();
 
   blocTest<MocListPageCubit, MocListPageState>(
     'initial state is loading',
-    build: () => MocListPageCubit(_brickSetRepository, _mocRepository),
+    build: () => MocListPageCubit(brickSetRepository, mocRepository),
     verify: (cubit) => expect(cubit.state is MocListPageLoading, true),
   );
 
   blocTest<MocListPageCubit, MocListPageState>(
     'loading the set list emits first loading state and loaded state afterwards',
     build: () {
-      when(() => _brickSetRepository.loadMocs(setNum: setNum))
+      when(() => brickSetRepository.loadMocs(setNum: setNum))
           .thenAnswer((_) async => right([testMoc]));
-      when(() => _mocRepository.areBuildInstructionsAvailable(
+      when(() => mocRepository.areBuildInstructionsAvailable(
           setNum: setNum,
           mocNums: [testMoc.mocNum])).thenAnswer((_) async => [testMoc.mocNum]);
-      return MocListPageCubit(_brickSetRepository, _mocRepository);
+      return MocListPageCubit(brickSetRepository, mocRepository);
     },
     act: (cubit) => cubit.loadMocList(setNum),
     expect: () => [
@@ -43,9 +43,9 @@ main() {
   blocTest<MocListPageCubit, MocListPageState>(
     'loading the set list emits first loading state and error state afterwards if loading fails',
     build: () {
-      when(() => _brickSetRepository.loadMocs(setNum: setNum))
+      when(() => brickSetRepository.loadMocs(setNum: setNum))
           .thenAnswer((_) async => left(failure));
-      return MocListPageCubit(_brickSetRepository, _mocRepository);
+      return MocListPageCubit(brickSetRepository, mocRepository);
     },
     act: (cubit) => cubit.loadMocList(setNum),
     expect: () => [MocListPageLoading(), const MocListPageError(failure)],

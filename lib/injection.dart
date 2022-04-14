@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:brick_app_v2/infrastructure/dio_log_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';

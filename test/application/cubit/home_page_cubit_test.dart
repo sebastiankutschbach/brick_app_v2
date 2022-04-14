@@ -15,16 +15,16 @@ main() {
   const userToken = 'userToken';
 
   final SetListRepositoryFacade setListRepository = MockSetListRepository();
-  final AuthenticationCubit _authenticationCubit = MockAuthenticationCubit();
+  final AuthenticationCubit authenticationCubit = MockAuthenticationCubit();
 
   setUpAll(() {
-    when(() => _authenticationCubit.userToken)
+    when(() => authenticationCubit.userToken)
         .thenAnswer((_) async => right(userToken));
   });
 
   blocTest<HomePageCubit, HomePageState>(
     'initial state is loading state',
-    build: () => HomePageCubit(setListRepository, _authenticationCubit),
+    build: () => HomePageCubit(setListRepository, authenticationCubit),
     verify: (cubit) => expect(
       cubit.state,
       isA<HomePageLoading>(),
@@ -36,7 +36,7 @@ main() {
     build: () {
       when(() => setListRepository.getAllSetLists(userToken))
           .thenAnswer((_) async => right([aSetList]));
-      return HomePageCubit(setListRepository, _authenticationCubit);
+      return HomePageCubit(setListRepository, authenticationCubit);
     },
     act: (cubit) => cubit.loadSetLists(),
     expect: () => [
@@ -51,7 +51,7 @@ main() {
     build: () {
       when(() => setListRepository.getAllSetLists(userToken))
           .thenAnswer((_) async => left(const Failure('error')));
-      return HomePageCubit(setListRepository, _authenticationCubit);
+      return HomePageCubit(setListRepository, authenticationCubit);
     },
     act: (cubit) => cubit.loadSetLists(),
     expect: () => [

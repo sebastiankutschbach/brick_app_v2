@@ -5,7 +5,7 @@ import 'package:brick_app_v2/domain/set_list.dart';
 import 'package:brick_app_v2/infrastructure/set_list_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
 
 part 'home_page_state.dart';
 

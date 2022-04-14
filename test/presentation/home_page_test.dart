@@ -14,18 +14,18 @@ main() {
   const List<SetList> setLists = [SetList(1, 'name', 2), SetList(2, 'name', 3)];
 
   late HomePageCubit cubit = MockHomePageCubit();
-  final AppRouter _appRouter = AppRouter();
+  final AppRouter appRouter = AppRouter();
 
   Widget _createTestableWidget() {
     getIt.allowReassignment = true;
     getIt.registerSingleton<HomePageCubit>(cubit);
     when(() => cubit.loadSetLists()).thenAnswer((_) async => []);
 
-    _appRouter.replace(const HomeRoute());
+    appRouter.replace(const HomeRoute());
 
     return MaterialApp.router(
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser(),
+      routerDelegate: appRouter.delegate(),
+      routeInformationParser: appRouter.defaultRouteParser(),
     );
   }
 
@@ -54,9 +54,8 @@ main() {
         ),
       );
 
-      expect(_appRouter.current.name, SetListRoute.name);
-      expect(
-          (_appRouter.current.args as SetListRouteArgs).setList, setLists[1]);
+      expect(appRouter.current.name, SetListRoute.name);
+      expect((appRouter.current.args as SetListRouteArgs).setList, setLists[1]);
     },
   );
 

@@ -15,26 +15,26 @@ main() {
   const int setListId = 1;
   const Failure failure = Failure('429');
 
-  final AuthenticationCubit _authenticationCubit = MockAuthenticationCubit();
-  final SetListRepositoryFacade _setListRepository = MockSetListRepository();
+  final AuthenticationCubit authenticationCubit = MockAuthenticationCubit();
+  final SetListRepositoryFacade setListRepository = MockSetListRepository();
 
   setUpAll(() {
-    when(() => _authenticationCubit.userToken)
+    when(() => authenticationCubit.userToken)
         .thenAnswer((_) async => right(userToken));
   });
 
   blocTest<SetListPageCubit, SetListPageState>(
     'initial state is loading',
-    build: () => SetListPageCubit(_setListRepository, _authenticationCubit),
+    build: () => SetListPageCubit(setListRepository, authenticationCubit),
     verify: (cubit) => expect(cubit.state is SetListPageLoading, true),
   );
 
   blocTest<SetListPageCubit, SetListPageState>(
     'loading the set list emits first loading state and loaded state afterwards',
     build: () {
-      when(() => _setListRepository.getSetList(userToken, setListId))
+      when(() => setListRepository.getSetList(userToken, setListId))
           .thenAnswer((_) async => right(sets));
-      return SetListPageCubit(_setListRepository, _authenticationCubit);
+      return SetListPageCubit(setListRepository, authenticationCubit);
     },
     act: (cubit) => cubit.loadSetList(setListId),
     expect: () => [SetListPageLoading(), SetListPageLoaded(sets)],
@@ -43,9 +43,9 @@ main() {
   blocTest<SetListPageCubit, SetListPageState>(
     'loading the set list emits first loading state and error state afterwards if loading fails',
     build: () {
-      when(() => _setListRepository.getSetList(userToken, setListId))
+      when(() => setListRepository.getSetList(userToken, setListId))
           .thenAnswer((_) async => left(failure));
-      return SetListPageCubit(_setListRepository, _authenticationCubit);
+      return SetListPageCubit(setListRepository, authenticationCubit);
     },
     act: (cubit) => cubit.loadSetList(setListId),
     expect: () => [SetListPageLoading(), const SetListPageError(failure)],

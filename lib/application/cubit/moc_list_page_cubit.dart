@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:brick_app_v2/application/cubit/authentication_cubit.dart';
 import 'package:brick_app_v2/domain/failure.dart';
 import 'package:brick_app_v2/domain/moc.dart';
 import 'package:brick_app_v2/infrastructure/moc_repository.dart';

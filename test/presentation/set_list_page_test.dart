@@ -15,7 +15,7 @@ main() {
   const SetList setList = SetList(1, 'name', 2);
 
   final cubit = MockSetListPageCubit();
-  final AppRouter _appRouter = AppRouter();
+  final AppRouter appRouter = AppRouter();
 
   Widget _createTestableWidget() {
     getIt.allowReassignment = true;
@@ -23,11 +23,11 @@ main() {
 
     when(() => cubit.loadSetList(setList.id)).thenAnswer((_) async => sets);
 
-    _appRouter.replace(SetListRoute(setList: setList));
+    appRouter.replace(SetListRoute(setList: setList));
 
     return MaterialApp.router(
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser(),
+      routerDelegate: appRouter.delegate(),
+      routeInformationParser: appRouter.defaultRouteParser(),
     );
   }
 
@@ -56,8 +56,8 @@ main() {
         ),
       );
 
-      expect(_appRouter.current.name, MocListRoute.name);
-      expect((_appRouter.current.args as MocListRouteArgs).set, sets[0]);
+      expect(appRouter.current.name, MocListRoute.name);
+      expect((appRouter.current.args as MocListRouteArgs).set, sets[0]);
     },
   );
 

@@ -9,7 +9,7 @@ import '../mocks.dart';
 
 main() {
   final cubit = MockSettingsCubit();
-  final AppRouter _appRouter = AppRouter();
+  final AppRouter appRouter = AppRouter();
 
   Widget _createTestableWidget() {
     whenListen(cubit, const Stream<SettingsState>.empty(),
@@ -17,13 +17,13 @@ main() {
             rebrickableUsername: '',
             rebrickablePassword: '',
             rebrickableApiKey: ''));
-    _appRouter.push(const SettingsRoute());
+    appRouter.push(const SettingsRoute());
 
     return BlocProvider<SettingsCubit>(
       create: (context) => cubit,
       child: MaterialApp.router(
-        routerDelegate: _appRouter.delegate(),
-        routeInformationParser: _appRouter.defaultRouteParser(),
+        routerDelegate: appRouter.delegate(),
+        routeInformationParser: appRouter.defaultRouteParser(),
       ),
     );
   }

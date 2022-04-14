@@ -15,7 +15,7 @@ import '../mocks.dart';
 main() {
   final List<Moc> mocs = [testMoc];
   final cubit = MockMocListPageCubit();
-  final AppRouter _appRouter = AppRouter();
+  final AppRouter appRouter = AppRouter();
 
   Widget _createTestableWidget() {
     getIt.allowReassignment = true;
@@ -24,11 +24,11 @@ main() {
     when(() => cubit.loadMocList(testBrickSet.setNum))
         .thenAnswer((_) async => mocs);
 
-    _appRouter.replace(MocListRoute(set: testBrickSet));
+    appRouter.replace(MocListRoute(set: testBrickSet));
 
     return MaterialApp.router(
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser(),
+      routerDelegate: appRouter.delegate(),
+      routeInformationParser: appRouter.defaultRouteParser(),
     );
   }
 
