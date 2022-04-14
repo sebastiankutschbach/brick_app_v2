@@ -72,7 +72,7 @@ class MocListPage extends StatelessWidget {
         key: Key('mocCard-${moc.mocNum}'),
         child: Column(children: [
           CachedNetworkImage(
-            imageUrl: set.setImgUrl.toString(),
+            imageUrl: moc.imgUrl.toString(),
             placeholder: (context, url) => const CircularProgressIndicator(),
             errorWidget: (context, url, error) => const Icon(Icons.error),
             height: 150,
@@ -83,7 +83,7 @@ class MocListPage extends StatelessWidget {
             moc.name,
             style: Theme.of(context).textTheme.bodyLarge,
           ),
-          Text('${set.numParts} parts'),
+          Text('${moc.numParts} parts'),
           const SizedBox(height: 8.0),
         ]),
       ),
