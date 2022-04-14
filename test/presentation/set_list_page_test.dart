@@ -2,7 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:brick_app_v2/app_router.dart';
 import 'package:brick_app_v2/application/cubit/set_list_page_cubit.dart';
 import 'package:brick_app_v2/domain/failure.dart';
-import 'package:brick_app_v2/domain/set.dart';
+import 'package:brick_app_v2/domain/brick_set.dart';
 import 'package:brick_app_v2/domain/set_list.dart';
 import 'package:brick_app_v2/injection.dart';
 import 'package:flutter/material.dart';
@@ -43,24 +43,23 @@ main() {
     },
   );
 
-  // testWidgets(
-  //   "navigates to set list page",
-  //   (WidgetTester tester) async {
-  //     whenListen(cubit, const Stream<HomePageState>.empty(),
-  //         initialState: HomePageLoaded(setLists));
-  //     await tester.pumpWidget(_createTestableWidget());
+  testWidgets(
+    "navigates to moc page",
+    (WidgetTester tester) async {
+      whenListen(cubit, const Stream<SetListPageState>.empty(),
+          initialState: SetListPageLoaded(sets));
+      await tester.pumpWidget(_createTestableWidget());
 
-  //     await tester.tap(
-  //       find.byKey(
-  //         Key('setListTile-${setLists[1].id}'),
-  //       ),
-  //     );
+      await tester.tap(
+        find.byKey(
+          Key('setCard-${sets[0].setNum}'),
+        ),
+      );
 
-  //     expect(_appRouter.current.name, SetListRoute.name);
-  //     expect(
-  //         (_appRouter.current.args as SetListRouteArgs).setList, setLists[1]);
-  //   },
-  // );
+      expect(_appRouter.current.name, MocListRoute.name);
+      expect((_appRouter.current.args as MocListRouteArgs).set, sets[0]);
+    },
+  );
 
   testWidgets(
     "does show loading spinner during loading",
@@ -85,7 +84,10 @@ main() {
   );
 }
 
-final List<Set> sets = [Set.fromJson(set1Json), Set.fromJson(set2Json)];
+final List<BrickSet> sets = [
+  BrickSet.fromJson(set1Json),
+  BrickSet.fromJson(set2Json)
+];
 final set1Json = {
   "set_num": "31058-1",
   "name": "Mighty Dinosaurs",

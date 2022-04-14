@@ -30,6 +30,11 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData,
           child: SetListPage(args.setList, key: args.key));
+    },
+    MocListRoute.name: (routeData) {
+      final args = routeData.argsAs<MocListRouteArgs>();
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: MocListPage(args.set, key: args.key));
     }
   };
 
@@ -37,7 +42,8 @@ class _$AppRouter extends RootStackRouter {
   List<RouteConfig> get routes => [
         RouteConfig(HomeRoute.name, path: '/'),
         RouteConfig(SettingsRoute.name, path: '/settings-page'),
-        RouteConfig(SetListRoute.name, path: '/set-list-page')
+        RouteConfig(SetListRoute.name, path: '/set-list-page'),
+        RouteConfig(MocListRoute.name, path: '/moc-list-page')
       ];
 }
 
@@ -78,5 +84,28 @@ class SetListRouteArgs {
   @override
   String toString() {
     return 'SetListRouteArgs{setList: $setList, key: $key}';
+  }
+}
+
+/// generated route for
+/// [MocListPage]
+class MocListRoute extends PageRouteInfo<MocListRouteArgs> {
+  MocListRoute({required BrickSet set, Key? key})
+      : super(MocListRoute.name,
+            path: '/moc-list-page', args: MocListRouteArgs(set: set, key: key));
+
+  static const String name = 'MocListRoute';
+}
+
+class MocListRouteArgs {
+  const MocListRouteArgs({required this.set, this.key});
+
+  final BrickSet set;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'MocListRouteArgs{set: $set, key: $key}';
   }
 }

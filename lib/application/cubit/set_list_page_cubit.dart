@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:brick_app_v2/application/cubit/authentication_cubit.dart';
 import 'package:brick_app_v2/domain/failure.dart';
-import 'package:brick_app_v2/domain/set.dart';
+import 'package:brick_app_v2/domain/brick_set.dart';
 import 'package:brick_app_v2/infrastructure/rebrickable/set_list_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';

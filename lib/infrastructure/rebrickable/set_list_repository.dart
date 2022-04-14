@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:brick_app_v2/domain/failure.dart';
-import 'package:brick_app_v2/domain/set.dart';
+import 'package:brick_app_v2/domain/brick_set.dart';
 import 'package:brick_app_v2/domain/set_list.dart';
 import 'package:brick_app_v2/infrastructure/rebrickable/rebrickable_api_constants.dart';
 import 'package:dartz/dartz.dart';
@@ -32,15 +32,15 @@ class SetListRepository {
     }
   }
 
-  Future<Either<Failure, List<Set>>> getSetList(
+  Future<Either<Failure, List<BrickSet>>> getSetList(
       String userToken, int setListId) async {
     try {
       final response = await _dio.get(userSetListDetailsUrlTemplate
           .expand({'user_token': userToken, 'list_id': setListId}));
 
-      final results = List<Set>.from(
+      final results = List<BrickSet>.from(
         response.data['results'].map(
-          (result) => Set.fromJson(result['set']),
+          (result) => BrickSet.fromJson(result['set']),
         ),
       );
       return right(results);

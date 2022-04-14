@@ -1,4 +1,6 @@
-class Set {
+import 'package:equatable/equatable.dart';
+
+class BrickSet extends Equatable {
   final String setNum;
   final String name;
   final int year;
@@ -8,7 +10,7 @@ class Set {
   final Uri setUrl;
   final DateTime lastModified;
 
-  Set.fromJson(Map<String, dynamic> json)
+  BrickSet.fromJson(Map<String, dynamic> json)
       : setNum = json['set_num'],
         name = json['name'],
         year = json['year'],
@@ -17,4 +19,8 @@ class Set {
         setImgUrl = Uri.parse(json['set_img_url']),
         setUrl = Uri.parse(json['set_url']),
         lastModified = DateTime.parse(json['last_modified_dt']);
+
+  @override
+  List<Object?> get props =>
+      [setNum, name, year, themeId, numParts, setImgUrl, setUrl, lastModified];
 }

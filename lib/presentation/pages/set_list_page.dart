@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:brick_app_v2/app_router.dart';
 import 'package:brick_app_v2/application/cubit/set_list_page_cubit.dart';
-import 'package:brick_app_v2/domain/set.dart';
+import 'package:brick_app_v2/domain/brick_set.dart';
 import 'package:brick_app_v2/domain/set_list.dart';
 import 'package:brick_app_v2/injection.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -65,27 +67,30 @@ class SetListPage extends StatelessWidget {
     );
   }
 
-  _buildSetCard(BuildContext context, Set set) {
+  _buildSetCard(BuildContext context, BrickSet set) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Card(
-        key: Key('setCard-${set.setNum}'),
-        child: Column(children: [
-          CachedNetworkImage(
-            imageUrl: set.setImgUrl.toString(),
-            placeholder: (context, url) => const CircularProgressIndicator(),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-            height: 150,
-            width: 150,
-          ),
-          const SizedBox(height: 8.0),
-          Text(
-            set.name,
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
-          Text('${set.numParts} parts'),
-          const SizedBox(height: 8.0),
-        ]),
+      child: GestureDetector(
+        onTap: () => AutoRouter.of(context).push(MocListRoute(set: set)),
+        child: Card(
+          key: Key('setCard-${set.setNum}'),
+          child: Column(children: [
+            CachedNetworkImage(
+              imageUrl: set.setImgUrl.toString(),
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+              height: 150,
+              width: 150,
+            ),
+            const SizedBox(height: 8.0),
+            Text(
+              set.name,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            Text('${set.numParts} parts'),
+            const SizedBox(height: 8.0),
+          ]),
+        ),
       ),
     );
   }

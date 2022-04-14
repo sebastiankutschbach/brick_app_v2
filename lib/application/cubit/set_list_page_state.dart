@@ -19,7 +19,7 @@ class SetListPageError extends SetListPageState {
 }
 
 class SetListPageLoaded extends SetListPageState {
-  final List<Set> sets;
+  final List<BrickSet> sets;
 
   const SetListPageLoaded(this.sets);
 
