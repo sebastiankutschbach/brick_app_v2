@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:brick_app_v2/application/cubit/settings_cubit.dart';
 import 'package:brick_app_v2/domain/failure.dart';
-import 'package:brick_app_v2/infrastructure/rebrickable/user_token_repository.dart';
+import 'package:brick_app_v2/infrastructure/user_token_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';

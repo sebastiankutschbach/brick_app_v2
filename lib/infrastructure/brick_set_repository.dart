@@ -1,6 +1,6 @@
 import 'package:brick_app_v2/domain/failure.dart';
 import 'package:brick_app_v2/domain/moc.dart';
-import 'package:brick_app_v2/infrastructure/rebrickable/rebrickable_api_constants.dart';
+import 'package:brick_app_v2/infrastructure/rebrickable_api_constants.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';

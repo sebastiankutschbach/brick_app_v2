@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:brick_app_v2/infrastructure/dio_log_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
@@ -21,24 +22,4 @@ abstract class DioModule {
   }
 
   Dio get dio => _dio;
-}
-
-class DioLogInterceptor implements Interceptor {
-  @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
-    log('dio - onError: $err');
-    handler.next(err);
-  }
-
-  @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    log('dio - onRequest: ${options.uri}');
-    handler.next(options);
-  }
-
-  @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) {
-    log('dio - onResponse: $response');
-    handler.next(response);
-  }
 }

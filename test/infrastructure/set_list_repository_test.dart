@@ -1,5 +1,5 @@
-import 'package:brick_app_v2/infrastructure/rebrickable/rebrickable_api_constants.dart';
-import 'package:brick_app_v2/infrastructure/rebrickable/set_list_repository.dart';
+import 'package:brick_app_v2/infrastructure/rebrickable_api_constants.dart';
+import 'package:brick_app_v2/infrastructure/set_list_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';

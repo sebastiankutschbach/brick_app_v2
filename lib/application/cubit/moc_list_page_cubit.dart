@@ -2,8 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:brick_app_v2/application/cubit/authentication_cubit.dart';
 import 'package:brick_app_v2/domain/failure.dart';
 import 'package:brick_app_v2/domain/moc.dart';
-import 'package:brick_app_v2/infrastructure/moc/moc_repository.dart';
-import 'package:brick_app_v2/infrastructure/rebrickable/brick_set_repository.dart';
+import 'package:brick_app_v2/infrastructure/moc_repository.dart';
+import 'package:brick_app_v2/infrastructure/brick_set_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 

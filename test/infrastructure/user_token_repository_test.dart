@@ -1,5 +1,5 @@
-import 'package:brick_app_v2/infrastructure/rebrickable/rebrickable_api_constants.dart';
-import 'package:brick_app_v2/infrastructure/rebrickable/user_token_repository.dart';
+import 'package:brick_app_v2/infrastructure/rebrickable_api_constants.dart';
+import 'package:brick_app_v2/infrastructure/user_token_repository.dart';
 import 'package:brick_app_v2/injection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';

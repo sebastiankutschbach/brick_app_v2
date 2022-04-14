@@ -13,10 +13,10 @@ import 'application/cubit/home_page_cubit.dart' as _i10;
 import 'application/cubit/moc_list_page_cubit.dart' as _i11;
 import 'application/cubit/set_list_page_cubit.dart' as _i12;
 import 'application/cubit/settings_cubit.dart' as _i6;
-import 'infrastructure/moc/moc_repository.dart' as _i4;
-import 'infrastructure/rebrickable/brick_set_repository.dart' as _i9;
-import 'infrastructure/rebrickable/set_list_repository.dart' as _i5;
-import 'infrastructure/rebrickable/user_token_repository.dart' as _i7;
+import 'infrastructure/brick_set_repository.dart' as _i9;
+import 'infrastructure/moc_repository.dart' as _i4;
+import 'infrastructure/set_list_repository.dart' as _i5;
+import 'infrastructure/user_token_repository.dart' as _i7;
 import 'injection.dart' as _i13; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
