@@ -27,22 +27,20 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   final dioModule = _$DioModule();
   gh.factory<_i3.Dio>(() => dioModule.dio);
   gh.factory<_i4.MocRepositoryFacade>(() => _i4.MocRepository());
-  gh.factory<_i5.SetListRepository>(
+  gh.factory<_i5.SetListRepositoryFacade>(
       () => _i5.SetListRepository(get<_i3.Dio>()));
   gh.singleton<_i6.SettingsCubit>(_i6.SettingsCubit());
-  gh.factory<_i7.UserTokenRepository>(() => _i7.UserTokenRepository());
-  gh.factory<_i8.AuthenticationCubit>(() => _i8.AuthenticationCubit(
-      get<_i3.Dio>(),
-      get<_i7.UserTokenRepository>(),
-      get<_i6.SettingsCubit>()));
-  gh.factory<_i9.BrickSetRepository>(
+  gh.factory<_i7.UserTokenRepositoryFacade>(() => _i7.UserTokenRepository());
+  gh.singleton<_i8.AuthenticationCubit>(_i8.AuthenticationCubit(get<_i3.Dio>(),
+      get<_i7.UserTokenRepositoryFacade>(), get<_i6.SettingsCubit>()));
+  gh.factory<_i9.BrickSetRepositoryFacade>(
       () => _i9.BrickSetRepository(get<_i3.Dio>()));
   gh.factory<_i10.HomePageCubit>(() => _i10.HomePageCubit(
-      get<_i5.SetListRepository>(), get<_i8.AuthenticationCubit>()));
+      get<_i5.SetListRepositoryFacade>(), get<_i8.AuthenticationCubit>()));
   gh.factory<_i11.MocListPageCubit>(() => _i11.MocListPageCubit(
-      get<_i9.BrickSetRepository>(), get<_i4.MocRepositoryFacade>()));
+      get<_i9.BrickSetRepositoryFacade>(), get<_i4.MocRepositoryFacade>()));
   gh.factory<_i12.SetListPageCubit>(() => _i12.SetListPageCubit(
-      get<_i5.SetListRepository>(), get<_i8.AuthenticationCubit>()));
+      get<_i5.SetListRepositoryFacade>(), get<_i8.AuthenticationCubit>()));
   return get;
 }
 

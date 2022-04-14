@@ -11,7 +11,7 @@ part 'home_page_state.dart';
 
 @Injectable()
 class HomePageCubit extends Cubit<HomePageState> {
-  final SetListRepository _setListRepository;
+  final SetListRepositoryFacade _setListRepository;
   final AuthenticationCubit _authenticationCubit;
 
   HomePageCubit(this._setListRepository, this._authenticationCubit)

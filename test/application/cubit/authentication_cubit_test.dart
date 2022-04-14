@@ -16,7 +16,8 @@ main() {
   const apiKey = 'apiKey';
   const userToken = 'userToken';
 
-  final UserTokenRepository _userTokenRepository = MockUserTokenRepository();
+  final UserTokenRepositoryFacade _userTokenRepository =
+      MockUserTokenRepository();
   final MockSettingsCubit _mockSettingsCubit = MockSettingsCubit();
   late Dio _dio;
 

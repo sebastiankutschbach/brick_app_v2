@@ -11,7 +11,7 @@ part 'moc_list_page_state.dart';
 
 @Injectable()
 class MocListPageCubit extends Cubit<MocListPageState> {
-  final BrickSetRepository _brickSetRepository;
+  final BrickSetRepositoryFacade _brickSetRepository;
   final MocRepositoryFacade _mocRepository;
 
   MocListPageCubit(this._brickSetRepository, this._mocRepository)

@@ -27,11 +27,12 @@ class MockSetListPageCubit extends MockCubit<SetListPageState>
 class MockMocListPageCubit extends MockCubit<MocListPageState>
     implements MocListPageCubit {}
 
-class MockSetListRepository extends Mock implements SetListRepository {}
+class MockSetListRepository extends Mock implements SetListRepositoryFacade {}
 
-class MockBrickSetRepository extends Mock implements BrickSetRepository {}
+class MockBrickSetRepository extends Mock implements BrickSetRepositoryFacade {}
 
-class MockUserTokenRepository extends Mock implements UserTokenRepository {}
+class MockUserTokenRepository extends Mock
+    implements UserTokenRepositoryFacade {}
 
 class MockMocRepository extends Mock implements MocRepositoryFacade {}
 

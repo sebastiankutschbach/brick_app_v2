@@ -7,8 +7,16 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable()
-class UserTokenRepository {
+abstract class UserTokenRepositoryFacade {
+  Future<Either<Failure, String>> getUserToken(
+      {required String username,
+      required String password,
+      required String apiKey});
+}
+
+@Injectable(as: UserTokenRepositoryFacade)
+class UserTokenRepository implements UserTokenRepositoryFacade {
+  @override
   Future<Either<Failure, String>> getUserToken(
       {required String username,
       required String password,

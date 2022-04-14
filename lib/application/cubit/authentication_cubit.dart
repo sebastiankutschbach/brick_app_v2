@@ -9,10 +9,10 @@ import 'package:injectable/injectable.dart';
 
 part 'authentication_state.dart';
 
-@Injectable()
+@Singleton()
 class AuthenticationCubit extends Cubit<AuthenticationState> {
   final Dio _dio;
-  final UserTokenRepository _userTokenRepository;
+  final UserTokenRepositoryFacade _userTokenRepository;
   final SettingsCubit _settingsCubit;
 
   AuthenticationCubit(this._dio, this._userTokenRepository, this._settingsCubit)

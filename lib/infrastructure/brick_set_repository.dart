@@ -5,12 +5,17 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable()
-class BrickSetRepository {
+abstract class BrickSetRepositoryFacade {
+  Future<Either<Failure, List<Moc>>> loadMocs({required String setNum});
+}
+
+@Injectable(as: BrickSetRepositoryFacade)
+class BrickSetRepository implements BrickSetRepositoryFacade {
   final Dio _dio;
 
   BrickSetRepository(this._dio);
 
+  @override
   Future<Either<Failure, List<Moc>>> loadMocs({required String setNum}) async {
     try {
       final mocsUrl =

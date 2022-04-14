@@ -14,7 +14,7 @@ main() {
   const String setNum = '1';
   const Failure failure = Failure('429');
 
-  final BrickSetRepository _brickSetRepository = MockBrickSetRepository();
+  final BrickSetRepositoryFacade _brickSetRepository = MockBrickSetRepository();
   final MocRepositoryFacade _mocRepository = MockMocRepository();
 
   blocTest<MocListPageCubit, MocListPageState>(

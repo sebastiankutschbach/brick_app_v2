@@ -14,7 +14,7 @@ main() {
   const aSetList = SetList(1, 'name', 1);
   const userToken = 'userToken';
 
-  final SetListRepository setListRepository = MockSetListRepository();
+  final SetListRepositoryFacade setListRepository = MockSetListRepository();
   final AuthenticationCubit _authenticationCubit = MockAuthenticationCubit();
 
   setUpAll(() {

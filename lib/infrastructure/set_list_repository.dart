@@ -8,12 +8,20 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable()
-class SetListRepository {
+abstract class SetListRepositoryFacade {
+  Future<Either<Failure, List<SetList>>> getAllSetLists(String userToken);
+
+  Future<Either<Failure, List<BrickSet>>> getSetList(
+      String userToken, int setListId);
+}
+
+@Injectable(as: SetListRepositoryFacade)
+class SetListRepository implements SetListRepositoryFacade {
   final Dio _dio;
 
   SetListRepository(this._dio);
 
+  @override
   Future<Either<Failure, List<SetList>>> getAllSetLists(
       String userToken) async {
     try {
@@ -32,6 +40,7 @@ class SetListRepository {
     }
   }
 
+  @override
   Future<Either<Failure, List<BrickSet>>> getSetList(
       String userToken, int setListId) async {
     try {

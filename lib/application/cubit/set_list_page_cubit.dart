@@ -10,7 +10,7 @@ part 'set_list_page_state.dart';
 
 @Injectable()
 class SetListPageCubit extends Cubit<SetListPageState> {
-  final SetListRepository _setListRepository;
+  final SetListRepositoryFacade _setListRepository;
   final AuthenticationCubit _authenticationCubit;
 
   SetListPageCubit(this._setListRepository, this._authenticationCubit)

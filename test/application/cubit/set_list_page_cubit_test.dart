@@ -16,7 +16,7 @@ main() {
   const Failure failure = Failure('429');
 
   final AuthenticationCubit _authenticationCubit = MockAuthenticationCubit();
-  final SetListRepository _setListRepository = MockSetListRepository();
+  final SetListRepositoryFacade _setListRepository = MockSetListRepository();
 
   setUpAll(() {
     when(() => _authenticationCubit.userToken)
