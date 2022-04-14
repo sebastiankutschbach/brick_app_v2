@@ -13,7 +13,6 @@ import '../mocks.dart';
 
 main() {
   const SetList setList = SetList(1, 'name', 2);
-  final List<Set> sets = [Set.fromJson(set1Json), Set.fromJson(set2Json)];
 
   final cubit = MockSetListPageCubit();
   final AppRouter _appRouter = AppRouter();
@@ -86,6 +85,7 @@ main() {
   );
 }
 
+final List<Set> sets = [Set.fromJson(set1Json), Set.fromJson(set2Json)];
 final set1Json = {
   "set_num": "31058-1",
   "name": "Mighty Dinosaurs",
