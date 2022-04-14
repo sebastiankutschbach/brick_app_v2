@@ -19,7 +19,7 @@ class SetListPage extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: Text(setList.name),
+              title: Text('${setList.name} (${setList.numberSets} sets)'),
             ),
             body: _bodyFrom(context, state),
           );
