@@ -35,6 +35,12 @@ class _$AppRouter extends RootStackRouter {
       final args = routeData.argsAs<MocListRouteArgs>();
       return MaterialPageX<dynamic>(
           routeData: routeData, child: MocListPage(args.set, key: args.key));
+    },
+    PdfRoute.name: (routeData) {
+      final args = routeData.argsAs<PdfRouteArgs>();
+      return MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: PdfPage(args.setNum, args.moc, key: args.key));
     }
   };
 
@@ -43,7 +49,8 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(HomeRoute.name, path: '/'),
         RouteConfig(SettingsRoute.name, path: '/settings-page'),
         RouteConfig(SetListRoute.name, path: '/set-list-page'),
-        RouteConfig(MocListRoute.name, path: '/moc-list-page')
+        RouteConfig(MocListRoute.name, path: '/moc-list-page'),
+        RouteConfig(PdfRoute.name, path: '/pdf-page')
       ];
 }
 
@@ -107,5 +114,31 @@ class MocListRouteArgs {
   @override
   String toString() {
     return 'MocListRouteArgs{set: $set, key: $key}';
+  }
+}
+
+/// generated route for
+/// [PdfPage]
+class PdfRoute extends PageRouteInfo<PdfRouteArgs> {
+  PdfRoute({required String setNum, required Moc moc, Key? key})
+      : super(PdfRoute.name,
+            path: '/pdf-page',
+            args: PdfRouteArgs(setNum: setNum, moc: moc, key: key));
+
+  static const String name = 'PdfRoute';
+}
+
+class PdfRouteArgs {
+  const PdfRouteArgs({required this.setNum, required this.moc, this.key});
+
+  final String setNum;
+
+  final Moc moc;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'PdfRouteArgs{setNum: $setNum, moc: $moc, key: $key}';
   }
 }

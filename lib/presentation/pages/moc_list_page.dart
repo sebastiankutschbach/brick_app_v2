@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:brick_app_v2/app_router.dart';
 import 'package:brick_app_v2/application/cubit/moc_list_page_cubit.dart';
 import 'package:brick_app_v2/domain/brick_set.dart';
 import 'package:brick_app_v2/domain/moc.dart';
@@ -70,24 +72,28 @@ class MocListPage extends StatelessWidget {
   _buildSetCard(BuildContext context, Moc moc) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Card(
-        key: Key('mocCard-${moc.mocNum}'),
-        child: Column(children: [
-          CachedNetworkImage(
-            imageUrl: moc.imgUrl.toString(),
-            placeholder: (context, url) => const CircularProgressIndicator(),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-            height: 150,
-            width: 150,
-          ),
-          const SizedBox(height: 8.0),
-          Text(
-            moc.name,
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
-          Text('${moc.numParts} parts'),
-          const SizedBox(height: 8.0),
-        ]),
+      child: GestureDetector(
+        onTap: () =>
+            AutoRouter.of(context).push(PdfRoute(setNum: set.setNum, moc: moc)),
+        child: Card(
+          key: Key('mocCard-${moc.mocNum}'),
+          child: Column(children: [
+            CachedNetworkImage(
+              imageUrl: moc.imgUrl.toString(),
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+              height: 150,
+              width: 150,
+            ),
+            const SizedBox(height: 8.0),
+            Text(
+              moc.name,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            Text('${moc.numParts} parts'),
+            const SizedBox(height: 8.0),
+          ]),
+        ),
       ),
     );
   }
