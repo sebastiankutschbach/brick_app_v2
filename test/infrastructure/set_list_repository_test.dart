@@ -43,13 +43,14 @@ main() {
       dioAdapter.onGet(
           userSetListDetailsUrlTemplate
               .expand({'user_token': userToken, 'list_id': setListId}),
-          (request) => request.reply(200, setListsResponse));
+          (request) => request.reply(200, setListResponse));
 
       final response =
           await SetListRepository(dio).getSetList(userToken, setListId);
 
       response.fold((failure) => fail('should not happen'), (sets) {
         expect(sets.length, 7);
+        expect(sets.first.name, 'Mighty Dinosaurs');
       });
     });
 

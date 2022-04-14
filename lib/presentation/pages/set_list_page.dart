@@ -63,7 +63,7 @@ class SetListPage extends StatelessWidget {
 
   _buildSetTile(BuildContext context, Set set) {
     return ListTile(
-      key: Key('setTile-${setList.id}'),
+      key: Key('setTile-${set.setNum}'),
       leading: const Icon(Icons.list),
       title: Text(set.name),
       subtitle: Text('${set.numParts} parts'),

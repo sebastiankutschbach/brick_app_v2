@@ -12,14 +12,14 @@ import '../mocks.dart';
 main() {
   const List<SetList> setLists = [SetList(1, 'name', 2), SetList(2, 'name', 3)];
 
-  final cubit = MockHomePageCubit();
+  late HomePageCubit cubit = MockHomePageCubit();
   final AppRouter _appRouter = AppRouter();
 
   Widget _createTestableWidget() {
     getIt.allowReassignment = true;
     getIt.registerSingleton<HomePageCubit>(cubit);
 
-    _appRouter.push(const HomeRoute());
+    _appRouter.replace(const HomeRoute());
 
     return MaterialApp.router(
       routerDelegate: _appRouter.delegate(),
