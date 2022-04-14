@@ -53,13 +53,15 @@ class MocListPage extends StatelessWidget {
   }
 
   _loadedBody(BuildContext context, MocListPageLoaded state) {
+    final mocsWithInstructions =
+        state.mocs.where((moc) => moc.hasInstruction).toList(growable: false);
     return DecoratedBox(
       decoration: BoxDecoration(color: Colors.grey[300]),
       child: Center(
         child: ListView.builder(
           itemBuilder: (context, index) =>
-              _buildSetCard(context, state.mocs[index]),
-          itemCount: state.mocs.length,
+              _buildSetCard(context, mocsWithInstructions[index]),
+          itemCount: mocsWithInstructions.length,
         ),
       ),
     );

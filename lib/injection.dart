@@ -17,6 +17,7 @@ abstract class DioModule {
   DioModule() {
     _dio = Dio();
     _dio.interceptors.add(DioLogInterceptor());
+    _dio.options.queryParameters['page_size'] = 1000;
   }
 
   Dio get dio => _dio;
