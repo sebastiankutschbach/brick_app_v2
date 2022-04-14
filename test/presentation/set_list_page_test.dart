@@ -38,8 +38,8 @@ main() {
           initialState: SetListPageLoaded(sets));
       await tester.pumpWidget(_createTestableWidget());
 
-      expect(find.byKey(Key('setTile-${sets[0].setNum}')), findsOneWidget);
-      expect(find.byKey(Key('setTile-${sets[1].setNum}')), findsOneWidget);
+      expect(find.byKey(Key('setCard-${sets[0].setNum}')), findsOneWidget);
+      expect(find.byKey(Key('setCard-${sets[1].setNum}')), findsOneWidget);
     },
   );
 

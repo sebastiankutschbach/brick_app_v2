@@ -58,18 +58,18 @@ class SetListPage extends StatelessWidget {
       child: Center(
         child: ListView.builder(
           itemBuilder: (context, index) =>
-              _buildSetTile(context, state.sets[index]),
+              _buildSetCard(context, state.sets[index]),
           itemCount: state.sets.length,
         ),
       ),
     );
   }
 
-  _buildSetTile(BuildContext context, Set set) {
+  _buildSetCard(BuildContext context, Set set) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
-        key: Key('setTile-${set.setNum}'),
+        key: Key('setCard-${set.setNum}'),
         child: Column(children: [
           CachedNetworkImage(
             imageUrl: set.setImgUrl.toString(),
