@@ -1,10 +1,9 @@
-import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:brick_app_v2/credentials/api_gateway.dart';
 import 'package:brick_app_v2/domain/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:http/http.dart';
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -21,30 +20,37 @@ abstract class MocRepositoryFacade {
 
 @Injectable(as: MocRepositoryFacade)
 class MocRepository implements MocRepositoryFacade {
+  final Dio _dio;
+
+  MocRepository(this._dio);
+
   @override
   Future<List<String>> areBuildInstructionsAvailable(
       {required String setNum, required List<String> mocNums}) async {
     final urlPath = '$apiGwBaseUrl/sets/$setNum';
 
-    final response =
-        await get(Uri.parse(urlPath), headers: {'x-api-key': apiGwKey});
-    if (response.statusCode != 200) {
-      final errMsg = 'Could not request moc list for $setNum';
+    try {
+      final response = await _dio.get(urlPath,
+          options: Options(headers: {'x-api-key': apiGwKey}));
+
+      final List<String> mocNameKeys = response.data['Contents']
+          .map((content) => content['Key'])
+          .cast<String>()
+          .toList();
+
+      final List<String> mocNames = mocNameKeys
+          .map((mocNameKey) =>
+              mocNameKey.replaceFirst('$setNum/', '').replaceFirst('.pdf', ''))
+          .toList();
+
+      return List<String>.from(
+          mocNames.where((mocName) => mocNums.contains(mocName)));
+    } on DioError catch (e) {
+      final errMsg =
+          'Could not request moc list for $setNum. Message: ${e.message}';
       log(errMsg);
+      return List.empty();
     }
-
-    final List<String> mocNameKeys = jsonDecode(response.body)['Contents']
-        .map((content) => content['Key'])
-        .cast<String>()
-        .toList();
-
-    final List<String> mocNames = mocNameKeys
-        .map((mocNameKey) =>
-            mocNameKey.replaceFirst('$setNum/', '').replaceFirst('.pdf', ''))
-        .toList();
-
-    return List<String>.from(
-        mocNames.where((mocName) => mocNums.contains(mocName)));
   }
 
   @override
@@ -60,8 +66,11 @@ class MocRepository implements MocRepositoryFacade {
       final File pdf = File('${appDir.path}/$setNum/$mocNum.pdf')
         ..createSync(recursive: true);
 
-      await get(presignedUrl).then((r) {
-        pdf.writeAsBytesSync(r.bodyBytes);
+      await _dio
+          .getUri<List<int>>(presignedUrl,
+              options: Options(responseType: ResponseType.bytes))
+          .then((r) {
+        pdf.writeAsBytesSync(r.data ?? []);
       });
 
       return right(pdf);
@@ -72,14 +81,15 @@ class MocRepository implements MocRepositoryFacade {
   Future<Either<Failure, Uri>> getBuildInstructionUrl(
       {required String setNum, required String mocNum}) async {
     final urlPath = '$apiGwBaseUrl/sets/$setNum/mocs/$mocNum';
-    final response =
-        await get(Uri.parse(urlPath), headers: {'x-api-key': apiGwKey});
-    if (response.statusCode != 200) {
+    try {
+      final response = await _dio.getUri(Uri.parse(urlPath),
+          options: Options(headers: {'x-api-key': apiGwKey}));
+      return right(Uri.parse(response.data.replaceAll('"', '')));
+    } on DioError catch (e) {
       final String errMsg =
-          'Failed to get presigned url to build instructions for set $setNum and moc $mocNum from $urlPath. ErrorCode ${response.statusCode}';
+          'Failed to get presigned url to build instructions for set $setNum and moc $mocNum from $urlPath. Message ${e.message}';
       log(errMsg);
       return left(Failure(errMsg));
     }
-    return right(Uri.parse(response.body.replaceAll('"', '')));
   }
 }

@@ -26,7 +26,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
   final dioModule = _$DioModule();
   gh.factory<_i3.Dio>(() => dioModule.dio);
-  gh.factory<_i4.MocRepositoryFacade>(() => _i4.MocRepository());
+  gh.factory<_i4.MocRepositoryFacade>(() => _i4.MocRepository(get<_i3.Dio>()));
   gh.factory<_i5.SetListRepositoryFacade>(
       () => _i5.SetListRepository(get<_i3.Dio>()));
   gh.singleton<_i6.SettingsCubit>(_i6.SettingsCubit());

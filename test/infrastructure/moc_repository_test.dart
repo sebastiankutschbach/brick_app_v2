@@ -1,12 +1,10 @@
 import 'package:brick_app_v2/infrastructure/moc_repository.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 main() {
-  late MocRepositoryFacade mocRepository;
-
-  setUp(() {
-    mocRepository = MocRepository();
-  });
+  final Dio dio = Dio();
+  final MocRepositoryFacade mocRepository = MocRepository(dio);
 
   group('get build instructions', () {
     test('downloads an existing moc build instruction', () async {

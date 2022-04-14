@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+// ignore: must_be_immutable
 class Moc extends Equatable {
   final String mocNum;
   final String name;
