@@ -51,7 +51,7 @@ class HomePage extends StatelessWidget {
     return Center(
       key: const Key('setListError'),
       child: Text(
-          'There was an error while loading your set lists: ${state.failure.message}'),
+          'There was an error while loading your set lists:\n${state.failure.message}'),
     );
   }
 

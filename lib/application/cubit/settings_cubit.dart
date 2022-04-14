@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 part 'settings_state.dart';
 
-@Injectable()
+@Singleton()
 class SettingsCubit extends HydratedCubit<SettingsState> {
   SettingsCubit()
       : super(const SettingsState(

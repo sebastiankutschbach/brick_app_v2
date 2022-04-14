@@ -29,7 +29,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i4.MocRepositoryFacade>(() => _i4.MocRepository());
   gh.factory<_i5.SetListRepository>(
       () => _i5.SetListRepository(get<_i3.Dio>()));
-  gh.factory<_i6.SettingsCubit>(() => _i6.SettingsCubit());
+  gh.singleton<_i6.SettingsCubit>(_i6.SettingsCubit());
   gh.factory<_i7.UserTokenRepository>(() => _i7.UserTokenRepository());
   gh.factory<_i8.AuthenticationCubit>(() => _i8.AuthenticationCubit(
       get<_i3.Dio>(),

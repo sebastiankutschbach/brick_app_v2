@@ -23,6 +23,12 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     final password = _settingsCubit.state.rebrickablePassword;
     final apiKey = _settingsCubit.state.rebrickableApiKey;
 
+    if (username.isEmpty || password.isEmpty || apiKey.isEmpty) {
+      emit(AuthenticationUnauthenticated());
+      return left(const Failure(
+          'Please go to settings and enter your credentials for Rebrickable'));
+    }
+
     final response = await _userTokenRepository.getUserToken(
         username: username, password: password, apiKey: apiKey);
     return response.fold((failure) {
