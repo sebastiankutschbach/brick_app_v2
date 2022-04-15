@@ -23,6 +23,9 @@ jobs:
           channel: ${{ env.flutter_channel }}
       - name: Setup Coverage
         uses: stelynx/dart-full-coverage@v1.0.3
+        with:
+          package: brick_app_v2
+          ignore: '*_state.dart'
       - name: Add credentials
         run: 'echo "${{ secrets.API_GW_CREDENTIALS }}" > lib/credentials/api_gateway.dart'
       - name: Install pub packages
