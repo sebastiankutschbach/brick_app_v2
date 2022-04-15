@@ -64,9 +64,9 @@ class HomePage extends StatelessWidget {
 
   _errorBody(BuildContext context, HomePageError state) {
     final errMsg = state.failure is CredentialsMissingFailure
-        ? Text(errMsgMissingCredentials)
+        ? const Text(errMsgMissingCredentials)
         : state.failure is WrongCredentialsFailure
-            ? Text(errMsgWrongCredentials)
+            ? const Text(errMsgWrongCredentials)
             : Text(
                 'There was an error while loading your set lists:\n${state.failure.message}');
     return Center(key: const Key('setListError'), child: errMsg);
