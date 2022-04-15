@@ -12,7 +12,7 @@ class PdfPageCubit extends Cubit<PdfPageState> {
 
   PdfPageCubit(this._mocRepository) : super(PdfPageLoading());
 
-  getPdfUrl(String setNum, String mocNum) async {
+  void getPdfUrl(String setNum, String mocNum) async {
     emit(PdfPageLoading());
 
     final response = await _mocRepository.getBuildInstructionUrl(

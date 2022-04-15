@@ -2,6 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:brick_app_v2/application/cubit/authentication_cubit.dart';
 import 'package:brick_app_v2/application/cubit/home_page_cubit.dart';
 import 'package:brick_app_v2/application/cubit/moc_list_page_cubit.dart';
+import 'package:brick_app_v2/application/cubit/pdf_page_cubit.dart';
 import 'package:brick_app_v2/application/cubit/set_list_page_cubit.dart';
 import 'package:brick_app_v2/application/cubit/settings_cubit.dart';
 import 'package:brick_app_v2/infrastructure/brick_set_repository.dart';
@@ -26,6 +27,9 @@ class MockSetListPageCubit extends MockCubit<SetListPageState>
 
 class MockMocListPageCubit extends MockCubit<MocListPageState>
     implements MocListPageCubit {}
+
+class MockPdfPageCubit extends MockCubit<PdfPageState> implements PdfPageCubit {
+}
 
 class MockSetListRepository extends Mock implements SetListRepositoryFacade {}
 
