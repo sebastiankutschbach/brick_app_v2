@@ -4,7 +4,7 @@ on:
   [workflow_dispatch, pull_request, push]
 
 env:
-  flutter_channel: dev
+  flutter_channel: beta
   java_version: "12.x"
 
 jobs:
@@ -21,6 +21,8 @@ jobs:
         uses: subosito/flutter-action@v1
         with:
           channel: ${{ env.flutter_channel }}
+      - name: Setup Coverage
+        uses: stelynx/dart-full-coverage@v1.0.3
       - name: Add credentials
         run: 'echo "${{ secrets.API_GW_CREDENTIALS }}" > lib/credentials/api_gateway.dart'
       - name: Install pub packages
@@ -29,6 +31,13 @@ jobs:
         run: flutter pub run build_runner build --delete-conflicting-outputs
       - name: Analyze Dart Code
         run: flutter analyze .
+      - name: Test with coverage
+        run: flutter test --coverage
+      - name: Upload generated coverage reports
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage/lcov.info
       - name: Build Android APK
         run: flutter build apk
       - name: Build web version
@@ -43,35 +52,6 @@ jobs:
         with:
           name: release-web
           path: build/web
-
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Setup Java
-        uses: actions/setup-java@v1
-        with:
-          java-version: ${{ env.java_version }}
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v1
-        with:
-          channel: ${{ env.flutter_channel }}
-      - name: Setup Coverage
-        uses: stelynx/dart-full-coverage@v1.0.3
-      - name: Add credentials
-        run: echo '${{ secrets.API_GW_CREDENTIALS }}' > lib/credentials/api_gateway.dart
-      - name: Install pub packages
-        run: flutter pub get
-      - name: Generate Code with build_runner
-        run: flutter pub run build_runner build --delete-conflicting-outputs
-      - name: Test with coverage
-        run: flutter test --coverage
-      - name: Upload generated coverage reports
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./coverage/lcov.info
 
   # integration-test:
   #   runs-on: macos-latest
