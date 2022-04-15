@@ -1,4 +1,4 @@
-[![Flutter](https://github.com/sebastiankutschbach/brick_app_v2/actions/workflows/flutter.yml/badge.svg)](https://github.com/sebastiankutschbach/brick_app/actions/workflows/flutter.yml)
+[![Flutter](https://github.com/sebastiankutschbach/brick_app_v2/actions/workflows/flutter.yml/badge.svg)](https://github.com/sebastiankutschbach/brick_app_v2/actions/workflows/flutter.yml)
 [![codecov](https://codecov.io/gh/sebastiankutschbach/brick_app_v2/branch/main/graph/badge.svg)](https://codecov.io/gh/sebastiankutschbach/brick_app_v2)
 # Brick App
 
