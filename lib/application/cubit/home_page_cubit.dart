@@ -30,6 +30,7 @@ class HomePageCubit extends Cubit<HomePageState> {
   }
 
   Future<void> loadSetLists() async {
+    emit(HomePageLoading());
     final userTokenResponse = await _authenticationCubit.userToken;
     userTokenResponse.fold(
       (failure) => emit(HomePageError(failure)),
