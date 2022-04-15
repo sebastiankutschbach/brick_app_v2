@@ -12,6 +12,7 @@ include: package:flutter_lints/flutter.yaml
 analyzer:
   exclude: 
     - lib/**.config.dart
+    - test/coverage_helper_test.dart
 
 linter:
   # The lint rules applied to this project can be customized in the
