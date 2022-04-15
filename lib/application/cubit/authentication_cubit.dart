@@ -25,7 +25,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
 
     if (username.isEmpty || password.isEmpty || apiKey.isEmpty) {
       emit(AuthenticationUnauthenticated());
-      return left(const Failure(
+      return left(const CredentialsMissingFailure(
           'Please go to settings and enter your credentials for Rebrickable'));
     }
 

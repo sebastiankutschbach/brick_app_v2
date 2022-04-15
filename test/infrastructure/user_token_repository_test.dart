@@ -1,3 +1,4 @@
+import 'package:brick_app_v2/domain/failure.dart';
 import 'package:brick_app_v2/infrastructure/rebrickable_api_constants.dart';
 import 'package:brick_app_v2/infrastructure/user_token_repository.dart';
 import 'package:brick_app_v2/injection.dart';
@@ -53,6 +54,29 @@ main() {
 
     expect(result.isLeft(), true);
     result.fold((failure) => expect(failure.message, 'Http status error [429]'),
+        (r) => fail('should not happen'));
+  });
+
+  test('returns wrong credentials failure on api 403', () async {
+    final dio = Dio();
+    final dioAdapter = DioAdapter(dio: dio);
+
+    getIt.allowReassignment = true;
+    getIt.registerSingleton<Dio>(dio);
+
+    dioAdapter.onPost(
+        userTokenUrl.toString(), (request) => request.reply(403, 'Error'),
+        data: 'username=$username&password=$password',
+        headers: {
+          Headers.contentTypeHeader: Headers.formUrlEncodedContentType,
+          'Authorization': 'key $apiKey',
+        });
+
+    final result = await UserTokenRepository()
+        .getUserToken(username: username, password: password, apiKey: apiKey);
+
+    expect(result.isLeft(), true);
+    result.fold((failure) => expect(failure is WrongCredentialsFailure, true),
         (r) => fail('should not happen'));
   });
 }

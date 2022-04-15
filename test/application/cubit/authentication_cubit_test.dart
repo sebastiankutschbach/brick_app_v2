@@ -21,7 +21,7 @@ main() {
   final MockSettingsCubit mockSettingsCubit = MockSettingsCubit();
   late Dio dio;
 
-  setUpAll(() {
+  setUp(() {
     dio = Dio();
     when(() => mockSettingsCubit.state).thenReturn(const SettingsState(
         rebrickableUsername: username,
@@ -59,6 +59,24 @@ main() {
         return AuthenticationCubit(dio, userTokenRepository, mockSettingsCubit);
       },
       act: (cubit) => cubit.login(),
+      expect: () => [AuthenticationUnauthenticated()],
+      verify: (cubit) => expect(dio.options.headers['Authorization'], null));
+
+  blocTest<AuthenticationCubit, AuthenticationState>(
+      'returns missing credentials error on login without configured credentials',
+      build: () {
+        when(() => mockSettingsCubit.state).thenReturn(const SettingsState(
+            rebrickableUsername: '',
+            rebrickablePassword: '',
+            rebrickableApiKey: ''));
+        return AuthenticationCubit(dio, userTokenRepository, mockSettingsCubit);
+      },
+      act: (cubit) async {
+        final loginResult = await cubit.login();
+        expect(loginResult.isLeft(), true);
+        loginResult.fold((failure) => failure is WrongCredentialsFailure,
+            (r) => fail('should not happen'));
+      },
       expect: () => [AuthenticationUnauthenticated()],
       verify: (cubit) => expect(dio.options.headers['Authorization'], null));
 }

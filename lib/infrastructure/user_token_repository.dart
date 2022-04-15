@@ -31,6 +31,9 @@ class UserTokenRepository implements UserTokenRepositoryFacade {
       return right(response.data['user_token']);
     } on DioError catch (e) {
       log('Error retrieving user token: ${e.message}');
+      if (e.message.contains('[403]')) {
+        return left(WrongCredentialsFailure(e.message));
+      }
       return left(Failure(e.message));
     }
   }

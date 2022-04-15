@@ -4,6 +4,7 @@ import 'package:brick_app_v2/application/cubit/home_page_cubit.dart';
 import 'package:brick_app_v2/domain/failure.dart';
 import 'package:brick_app_v2/domain/set_list.dart';
 import 'package:brick_app_v2/injection.dart';
+import 'package:brick_app_v2/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -78,6 +79,46 @@ main() {
       await tester.pumpWidget(_createTestableWidget());
 
       expect(find.byKey(const Key('setListError')), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    "does show material banner if credentials are missing",
+    (WidgetTester tester) async {
+      whenListen(
+          cubit,
+          Stream.fromIterable(
+              [HomePageError(const CredentialsMissingFailure('message'))]),
+          initialState: HomePageLoading());
+      await tester.pumpWidget(_createTestableWidget());
+
+      await tester.pumpAndSettle();
+
+      expect(
+          find.descendant(
+              of: find.byType(MaterialBanner),
+              matching: find.text(errMsgMissingCredentials)),
+          findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    "does show material banner if credentials are wrong",
+    (WidgetTester tester) async {
+      whenListen(
+          cubit,
+          Stream.fromIterable(
+              [HomePageError(const WrongCredentialsFailure('message'))]),
+          initialState: HomePageLoading());
+      await tester.pumpWidget(_createTestableWidget());
+
+      await tester.pumpAndSettle();
+
+      expect(
+          find.descendant(
+              of: find.byType(MaterialBanner),
+              matching: find.text(errMsgWrongCredentials)),
+          findsOneWidget);
     },
   );
 }
