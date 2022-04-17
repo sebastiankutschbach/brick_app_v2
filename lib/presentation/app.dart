@@ -2,6 +2,7 @@ import 'package:brick_app_v2/app_router.dart';
 import 'package:brick_app_v2/application/cubit/authentication_cubit.dart';
 import 'package:brick_app_v2/application/cubit/settings_cubit.dart';
 import 'package:brick_app_v2/injection.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,6 +25,11 @@ class App extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           routerDelegate: _appRouter.delegate(),
           routeInformationParser: _appRouter.defaultRouteParser(),
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: const [
+            Locale('en', ''),
+            Locale('de', ''),
+          ],
         ),
       ),
     );

@@ -1,0 +1,13 @@
+{
+    "home": "Startseite",
+    "errorLoadingSetList": "Es gab einen Fehler beim Laden deiner Set Listen:\n{}",
+    "noOfSets": {
+        "zero": "keine Sets",
+        "one": "{} Set",
+        "other": "{} Sets"
+    },
+    "dismiss": "Verwerfen",
+    "toSettingsPage": "Zu den Einstellungen",
+    "errMsgMissingCredentials": "Du hast noch keine Zugangsdaten für Rebrickable hinterlegt. Bitte trage sie in den Einstellungen ein.",
+    "errMsgWrongCredentials": "Du hast die falschen Zugangsdaten für Rebrickable hinterlegt. Bitte trage die korrekten Daten in den Einstellungen ein."
+}

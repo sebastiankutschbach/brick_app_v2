@@ -5,13 +5,9 @@ import 'package:brick_app_v2/domain/failure.dart';
 import 'package:brick_app_v2/domain/set_list.dart';
 import 'package:brick_app_v2/injection.dart';
 import 'package:brick_app_v2/presentation/widgets/brick_app_bar.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-const String errMsgMissingCredentials =
-    'You have not yet configured your rebrickable credentials. Please go to the settings page and enter them.';
-const String errMsgWrongCredentials =
-    'You have entered wrong rebrickable credentials. Please go to the settings page and enter the correct ones.';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,16 +20,16 @@ class HomePage extends StatelessWidget {
         listener: (context, state) {
           if (state is HomePageError) {
             if (state.failure is CredentialsMissingFailure) {
-              _showMaterialBanner(context, errMsgMissingCredentials);
+              _showMaterialBanner(context, 'errMsgMissingCredentials'.tr());
             } else if (state.failure is WrongCredentialsFailure) {
-              _showMaterialBanner(context, errMsgWrongCredentials);
+              _showMaterialBanner(context, 'errMsgWrongCredentials'.tr());
             }
           }
         },
         builder: (context, state) {
           return Scaffold(
             appBar: BrickAppBar(
-              const Text('Home'),
+              const Text('home').tr(),
             ),
             body: _bodyFrom(context, state),
             floatingActionButton: FloatingActionButton(
@@ -64,11 +60,10 @@ class HomePage extends StatelessWidget {
 
   _errorBody(BuildContext context, HomePageError state) {
     final errMsg = state.failure is CredentialsMissingFailure
-        ? const Text(errMsgMissingCredentials)
+        ? const Text('errMsgMissingCredentials').tr()
         : state.failure is WrongCredentialsFailure
-            ? const Text(errMsgWrongCredentials)
-            : Text(
-                'There was an error while loading your set lists:\n${state.failure.message}');
+            ? const Text('errMsgWrongCredentials').tr()
+            : Text('errorLoadingSetList'.tr(args: [state.failure.message]));
     return Center(key: const Key('setListError'), child: errMsg);
   }
 
@@ -87,7 +82,7 @@ class HomePage extends StatelessWidget {
       key: Key('setListTile-${setList.id}'),
       leading: const Icon(Icons.list),
       title: Text(setList.name),
-      subtitle: Text('${setList.numberSets} sets'),
+      subtitle: const Text('noOfSets').plural(setList.numberSets),
       onTap: () => AutoRouter.of(context).push(
         SetListRoute(setList: setList),
       ),
@@ -102,9 +97,9 @@ class HomePage extends StatelessWidget {
           TextButton(
               onPressed: () =>
                   ScaffoldMessenger.of(context).hideCurrentMaterialBanner(),
-              child: const Text('Dismiss')),
+              child: const Text('dismiss').tr()),
           ElevatedButton(
-            child: const Text('To the settings page'),
+            child: const Text('toSettingsPage').tr(),
             onPressed: () {
               ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
               AutoRouter.of(context).push(

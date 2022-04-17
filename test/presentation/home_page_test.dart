@@ -4,18 +4,21 @@ import 'package:brick_app_v2/application/cubit/home_page_cubit.dart';
 import 'package:brick_app_v2/domain/failure.dart';
 import 'package:brick_app_v2/domain/set_list.dart';
 import 'package:brick_app_v2/injection.dart';
-import 'package:brick_app_v2/presentation/pages/home_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../mocks.dart';
 
-main() {
+main() async {
   const List<SetList> setLists = [SetList(1, 'name', 2), SetList(2, 'name', 3)];
 
   late HomePageCubit cubit = MockHomePageCubit();
   final AppRouter appRouter = AppRouter();
+
+  TestWidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
 
   Widget _createTestableWidget() {
     getIt.allowReassignment = true;
@@ -25,6 +28,7 @@ main() {
     appRouter.replace(const HomeRoute());
 
     return MaterialApp.router(
+      localizationsDelegates: [],
       routerDelegate: appRouter.delegate(),
       routeInformationParser: appRouter.defaultRouteParser(),
     );
@@ -36,6 +40,8 @@ main() {
       whenListen(cubit, const Stream<HomePageState>.empty(),
           initialState: HomePageLoaded(setLists));
       await tester.pumpWidget(_createTestableWidget());
+
+      await tester.pumpAndSettle();
 
       expect(find.byKey(Key('setListTile-${setLists[0].id}')), findsOneWidget);
       expect(find.byKey(Key('setListTile-${setLists[1].id}')), findsOneWidget);
@@ -97,7 +103,7 @@ main() {
       expect(
           find.descendant(
               of: find.byType(MaterialBanner),
-              matching: find.text(errMsgMissingCredentials)),
+              matching: find.text('errMsgMissingCredentials')),
           findsOneWidget);
     },
   );
@@ -117,7 +123,7 @@ main() {
       expect(
           find.descendant(
               of: find.byType(MaterialBanner),
-              matching: find.text(errMsgWrongCredentials)),
+              matching: find.text('errMsgWrongCredentials')),
           findsOneWidget);
     },
   );

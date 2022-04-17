@@ -1,0 +1,13 @@
+{
+    "home": "Home",
+    "errorLoadingSetList": "There was an error while loading your set lists:\n{}",
+    "noOfSets": {
+        "zero": "No sets",
+        "one": "{} set",
+        "other": "{} sets"
+    },
+    "dismiss": "Dismiss",
+    "toSettingsPage": "Go to settings",
+    "errMsgMissingCredentials": "You have not yet configured your rebrickable credentials. Please go to the settings page and enter them.",
+    "errMsgWrongCredentials": "You have entered wrong rebrickable credentials. Please go to the settings page and enter the correct ones."
+}
