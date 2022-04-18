@@ -44,6 +44,17 @@ main() {
   );
 
   testWidgets(
+    "shows hint if list is empty",
+    (WidgetTester tester) async {
+      whenListen(cubit, const Stream<SetListPageState>.empty(),
+          initialState: const SetListPageLoaded([]));
+      await tester.pumpWidget(_createTestableWidget());
+
+      expect(find.byKey(const Key('noSetsFound')), findsOneWidget);
+    },
+  );
+
+  testWidgets(
     "navigates to moc page",
     (WidgetTester tester) async {
       whenListen(cubit, const Stream<SetListPageState>.empty(),

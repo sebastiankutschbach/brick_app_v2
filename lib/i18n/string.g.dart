@@ -3,9 +3,9 @@
  * Generated file. Do not edit.
  *
  * Locales: 2
- * Strings: 42 (21.0 per locale)
+ * Strings: 46 (23.0 per locale)
  *
- * Built on 2022-04-18 at 13:38 UTC
+ * Built on 2022-04-18 at 16:52 UTC
  */
 
 import 'package:flutter/widgets.dart';
@@ -398,6 +398,8 @@ class _StringEn {
 	String get enterPassword => 'Enter password';
 	String get enterApiKey => 'Enter API key';
 	String get close => 'Close';
+	String get noMocsFound => 'No mocs found for this set';
+	String get noSetsFound => 'This set list does not contain any sets';
 }
 
 // Path: <root>
@@ -449,6 +451,8 @@ class _StringDe implements _StringEn {
 	@override String get enterPassword => 'Gib dein Passwort ein';
 	@override String get enterApiKey => 'Gib deinen API Schlüssel ein';
 	@override String get close => 'Schließen';
+	@override String get noMocsFound => 'Es wurden keine Mocs für dieses Set gefunden';
+	@override String get noSetsFound => 'Diese Liste enthält keine Sets';
 }
 
 /// Flat map(s) containing all translations.
@@ -482,6 +486,8 @@ extension on _StringEn {
 			'enterPassword': 'Enter password',
 			'enterApiKey': 'Enter API key',
 			'close': 'Close',
+			'noMocsFound': 'No mocs found for this set',
+			'noSetsFound': 'This set list does not contain any sets',
 		};
 	}
 }
@@ -514,6 +520,8 @@ extension on _StringDe {
 			'enterPassword': 'Gib dein Passwort ein',
 			'enterApiKey': 'Gib deinen API Schlüssel ein',
 			'close': 'Schließen',
+			'noMocsFound': 'Es wurden keine Mocs für dieses Set gefunden',
+			'noSetsFound': 'Diese Liste enthält keine Sets',
 		};
 	}
 }

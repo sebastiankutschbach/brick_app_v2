@@ -23,5 +23,7 @@
     "enterUsername": "Enter username",
     "enterPassword": "Enter password",
     "enterApiKey": "Enter API key",
-    "close": "Close"
+    "close": "Close",
+    "noMocsFound": "No mocs found for this set",
+    "noSetsFound": "This set list does not contain any sets"
 }

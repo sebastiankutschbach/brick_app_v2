@@ -23,5 +23,7 @@
     "enterUsername": "Gib deinen Benutzernamen ein",
     "enterPassword": "Gib dein Passwort ein",
     "enterApiKey": "Gib deinen API Schlüssel ein",
-    "close": "Schließen"
+    "close": "Schließen",
+    "noMocsFound": "Es wurden keine Mocs für dieses Set gefunden",
+    "noSetsFound": "Diese Liste enthält keine Sets"
 }

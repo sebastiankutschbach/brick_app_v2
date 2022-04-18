@@ -33,7 +33,7 @@ main() {
   }
 
   testWidgets(
-    "does show one tile per moc that has build instructions",
+    "shows one tile per moc that has build instructions",
     (WidgetTester tester) async {
       whenListen(cubit, const Stream<MocListPageState>.empty(),
           initialState: MocListPageLoaded(mocs));
@@ -57,6 +57,17 @@ main() {
   );
 
   testWidgets(
+    "shows hint if list is empty",
+    (WidgetTester tester) async {
+      whenListen(cubit, const Stream<MocListPageState>.empty(),
+          initialState: const MocListPageLoaded([]));
+      await tester.pumpWidget(_createTestableWidget());
+
+      expect(find.byKey(const Key('noMocsFound')), findsOneWidget);
+    },
+  );
+
+  testWidgets(
     "navigates to pdf page",
     (WidgetTester tester) async {
       whenListen(cubit, const Stream<MocListPageState>.empty(),
@@ -74,7 +85,7 @@ main() {
   );
 
   testWidgets(
-    "does show loading spinner during loading",
+    "shows loading spinner during loading",
     (WidgetTester tester) async {
       whenListen(cubit, const Stream<MocListPageState>.empty(),
           initialState: const MocListPageLoading());
@@ -85,7 +96,7 @@ main() {
   );
 
   testWidgets(
-    "does show error if loading failed",
+    "shows error if loading failed",
     (WidgetTester tester) async {
       whenListen(cubit, const Stream<MocListPageState>.empty(),
           initialState: const MocListPageError(Failure('message')));

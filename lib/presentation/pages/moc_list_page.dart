@@ -53,6 +53,12 @@ class MocListPage extends StatelessWidget {
   Widget _loadedBody(BuildContext context, MocListPageLoaded state) {
     final mocsWithInstructions =
         state.mocs.where((moc) => moc.hasInstruction).toList(growable: false);
+    if (mocsWithInstructions.isEmpty) {
+      return Center(
+        key: const Key('noMocsFound'),
+        child: Text(t.noMocsFound),
+      );
+    }
     return DecoratedBox(
       decoration: BoxDecoration(color: Colors.grey[300]),
       child: Center(

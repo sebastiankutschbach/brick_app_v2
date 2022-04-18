@@ -57,11 +57,16 @@ class SetListPage extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(color: Colors.grey[300]),
       child: Center(
-        child: ListView.builder(
-          itemBuilder: (context, index) =>
-              _buildSetCard(context, state.sets[index]),
-          itemCount: state.sets.length,
-        ),
+        child: state.sets.isEmpty
+            ? Center(
+                key: const Key('noSetsFound'),
+                child: Text(t.noSetsFound),
+              )
+            : ListView.builder(
+                itemBuilder: (context, index) =>
+                    _buildSetCard(context, state.sets[index]),
+                itemCount: state.sets.length,
+              ),
       ),
     );
   }
