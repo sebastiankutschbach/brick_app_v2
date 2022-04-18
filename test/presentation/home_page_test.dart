@@ -4,7 +4,7 @@ import 'package:brick_app_v2/application/cubit/home_page_cubit.dart';
 import 'package:brick_app_v2/domain/failure.dart';
 import 'package:brick_app_v2/domain/set_list.dart';
 import 'package:brick_app_v2/injection.dart';
-import 'package:brick_app_v2/presentation/pages/home_page.dart';
+import 'package:brick_app_v2/i18n/string.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -97,7 +97,7 @@ main() {
       expect(
           find.descendant(
               of: find.byType(MaterialBanner),
-              matching: find.text(errMsgMissingCredentials)),
+              matching: find.text(t.errMsgMissingCredentials)),
           findsOneWidget);
     },
   );
@@ -117,7 +117,7 @@ main() {
       expect(
           find.descendant(
               of: find.byType(MaterialBanner),
-              matching: find.text(errMsgWrongCredentials)),
+              matching: find.text(t.errMsgWrongCredentials)),
           findsOneWidget);
     },
   );
