@@ -56,23 +56,22 @@ main() {
     },
   );
 
-  // testWidgets(
-  //   "navigates to moc page",
-  //   (WidgetTester tester) async {
-  //     whenListen(cubit, const Stream<MocListPageState>.empty(),
-  //         initialState: MocListPageLoaded(sets));
-  //     await tester.pumpWidget(_createTestableWidget());
+  testWidgets(
+    "navigates to pdf page",
+    (WidgetTester tester) async {
+      whenListen(cubit, const Stream<MocListPageState>.empty(),
+          initialState: MocListPageLoaded(mocs));
+      mocs.first.hasInstruction = true;
+      await tester.pumpWidget(_createTestableWidget());
 
-  //     await tester.tap(
-  //       find.byKey(
-  //         Key('setCard-${sets[0].setNum}'),
-  //       ),
-  //     );
+      await tester.tap(
+        find.byKey(Key('mocCard-${mocs[0].mocNum}')),
+      );
 
-  //     expect(_appRouter.current.name, MocListRoute.name);
-  //     expect((_appRouter.current.args as MocListRouteArgs).set, sets[0]);
-  //   },
-  // );
+      expect(appRouter.current.name, PdfRoute.name);
+      expect((appRouter.current.args as PdfRouteArgs).moc, mocs[0]);
+    },
+  );
 
   testWidgets(
     "does show loading spinner during loading",
