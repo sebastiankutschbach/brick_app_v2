@@ -1,13 +1,27 @@
 {
     "home": "Home",
     "errorLoadingSetList": "There was an error while loading your set lists:\n$error",
+    "errorLoadingMocList": "There was an error while loading your moc list:\n$error",
     "noOfSets": {
         "zero": "No sets",
-        "one": "$noOfSets set",
-        "other": "$noOfSets sets"
+        "one": "$count set",
+        "other": "$count sets"
+    },
+    "noOfParts": {
+        "zero": "No parts",
+        "one": "$count part",
+        "other": "$count parts"
     },
     "dismiss": "Dismiss",
     "toSettingsPage": "Go to settings",
     "errMsgMissingCredentials": "You have not yet configured your rebrickable credentials. Please go to the settings page and enter them.",
-    "errMsgWrongCredentials": "You have entered wrong rebrickable credentials. Please go to the settings page and enter the correct ones."
+    "errMsgWrongCredentials": "You have entered wrong rebrickable credentials. Please go to the settings page and enter the correct ones.",
+    "settings": "Settings",
+    "username": "Username",
+    "password": "Password",
+    "apiKey": "API Key",
+    "enterUsername": "Enter username",
+    "enterPassword": "Enter password",
+    "enterApiKey": "Enter API key",
+    "close": "Close"
 }

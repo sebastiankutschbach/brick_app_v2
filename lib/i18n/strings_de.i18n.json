@@ -1,13 +1,27 @@
 {
     "home": "Startseite",
     "errorLoadingSetList": "Es gab einen Fehler beim Laden deiner Set Listen:\n$error",
+    "errorLoadingMocList": "Es gab einen Fehler beim Laden deiner Moc Liste:\n$error",
     "noOfSets": {
         "zero": "keine Sets",
-        "one": "$noOfSets Set",
-        "other": "$noOfSets Sets"
+        "one": "$count Set",
+        "other": "$count Sets"
+    },
+    "noOfParts": {
+        "zero": "keine Teile",
+        "one": "$count Teil",
+        "other": "$count Teile"
     },
     "dismiss": "Verwerfen",
     "toSettingsPage": "Zu den Einstellungen",
     "errMsgMissingCredentials": "Du hast noch keine Zugangsdaten für Rebrickable hinterlegt. Bitte trage sie in den Einstellungen ein.",
-    "errMsgWrongCredentials": "Du hast die falschen Zugangsdaten für Rebrickable hinterlegt. Bitte trage die korrekten Daten in den Einstellungen ein."
+    "errMsgWrongCredentials": "Du hast die falschen Zugangsdaten für Rebrickable hinterlegt. Bitte trage die korrekten Daten in den Einstellungen ein.",
+    "settings": "Einstellungen",
+    "username": "Benutzername",
+    "password": "Passwort",
+    "apiKey": "API Schlüssel",
+    "enterUsername": "Gib deinen Benutzernamen ein",
+    "enterPassword": "Gib dein Passwort ein",
+    "enterApiKey": "Gib deinen API Schlüssel ein",
+    "close": "Schließen"
 }

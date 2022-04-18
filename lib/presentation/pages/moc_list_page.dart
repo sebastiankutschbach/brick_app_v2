@@ -7,6 +7,7 @@ import 'package:brick_app_v2/injection.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:brick_app_v2/i18n/string.g.dart';
 
 class MocListPage extends StatelessWidget {
   final BrickSet set;
@@ -49,8 +50,7 @@ class MocListPage extends StatelessWidget {
   _errorBody(BuildContext context, MocListPageError state) {
     return Center(
       key: const Key('mocListError'),
-      child: Text(
-          'There was an error while loading your set lists: ${state.failure.message}'),
+      child: Text(t.errorLoadingMocList(error: state.failure.message)),
     );
   }
 
@@ -90,7 +90,7 @@ class MocListPage extends StatelessWidget {
               moc.name,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
-            Text('${moc.numParts} parts'),
+            Text(t.noOfParts(count: moc.numParts)),
             const SizedBox(height: 8.0),
           ]),
         ),

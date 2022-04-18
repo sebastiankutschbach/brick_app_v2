@@ -2,6 +2,7 @@ import 'package:brick_app_v2/application/cubit/settings_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:brick_app_v2/i18n/string.g.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: Text(t.settings),
       ),
       body: BlocBuilder<SettingsCubit, SettingsState>(
         builder: (context, state) {
@@ -35,12 +36,12 @@ class SettingsPage extends StatelessWidget {
     return SettingsTile.navigation(
       key: const Key('rebrickableUsername'),
       leading: const Icon(Icons.person),
-      title: const Text('Username'),
+      title: Text(t.username),
       value: Text(state.rebrickableUsername),
       onPressed: (context) {
         _displayTextInputDialog(
           context,
-          title: 'Enter username',
+          title: t.enterUsername,
           hint: 'Rebrickable username',
           initialValue: state.rebrickableUsername,
           onChanged: (value) =>
@@ -54,14 +55,14 @@ class SettingsPage extends StatelessWidget {
     return SettingsTile.navigation(
       key: const Key('rebrickablePassword'),
       leading: const Icon(Icons.lock),
-      title: const Text('Password'),
+      title: Text(t.password),
       value: Text(
         '*' * state.rebrickablePassword.length,
       ),
       onPressed: (context) {
         _displayTextInputDialog(
           context,
-          title: 'Enter password',
+          title: t.enterPassword,
           hint: 'Rebrickable password',
           initialValue: state.rebrickablePassword,
           onChanged: (value) =>
@@ -75,14 +76,14 @@ class SettingsPage extends StatelessWidget {
     return SettingsTile.navigation(
       key: const Key('rebrickableApiKey'),
       leading: const Icon(Icons.token),
-      title: const Text('API Key'),
+      title: Text(t.apiKey),
       value: Text(
         state.rebrickableApiKey,
       ),
       onPressed: (context) {
         _displayTextInputDialog(
           context,
-          title: 'Enter API Key',
+          title: t.enterApiKey,
           hint: 'Rebrickable API Key',
           initialValue: state.rebrickableApiKey,
           onChanged: (value) =>
@@ -111,7 +112,7 @@ class SettingsPage extends StatelessWidget {
             actions: [
               ElevatedButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: const Text('CLOSE'),
+                child: Text(t.close.toUpperCase()),
               )
             ],
           );

@@ -3,9 +3,9 @@
  * Generated file. Do not edit.
  *
  * Locales: 2
- * Strings: 18 (9.0 per locale)
+ * Strings: 42 (21.0 per locale)
  *
- * Built on 2022-04-18 at 12:11 UTC
+ * Built on 2022-04-18 at 12:48 UTC
  */
 
 import 'package:flutter/widgets.dart';
@@ -375,15 +375,29 @@ class _StringEn {
 	// Translations
 	String get home => 'Home';
 	String errorLoadingSetList({required Object error}) => 'There was an error while loading your set lists:\n$error';
-	String noOfSets({required num count, required Object noOfSets}) => (_root._cardinalResolver ?? _pluralCardinalEn)(count,
+	String errorLoadingMocList({required Object error}) => 'There was an error while loading your moc list:\n$error';
+	String noOfSets({required num count}) => (_root._cardinalResolver ?? _pluralCardinalEn)(count,
 		zero: 'No sets',
-		one: '$noOfSets set',
-		other: '$noOfSets sets',
+		one: '$count set',
+		other: '$count sets',
+	);
+	String noOfParts({required num count}) => (_root._cardinalResolver ?? _pluralCardinalEn)(count,
+		zero: 'No parts',
+		one: '$count part',
+		other: '$count parts',
 	);
 	String get dismiss => 'Dismiss';
 	String get toSettingsPage => 'Go to settings';
 	String get errMsgMissingCredentials => 'You have not yet configured your rebrickable credentials. Please go to the settings page and enter them.';
 	String get errMsgWrongCredentials => 'You have entered wrong rebrickable credentials. Please go to the settings page and enter the correct ones.';
+	String get settings => 'Settings';
+	String get username => 'Username';
+	String get password => 'Password';
+	String get apiKey => 'API Key';
+	String get enterUsername => 'Enter username';
+	String get enterPassword => 'Enter password';
+	String get enterApiKey => 'Enter API key';
+	String get close => 'Close';
 }
 
 // Path: <root>
@@ -412,15 +426,29 @@ class _StringDe implements _StringEn {
 	// Translations
 	@override String get home => 'Startseite';
 	@override String errorLoadingSetList({required Object error}) => 'Es gab einen Fehler beim Laden deiner Set Listen:\n$error';
-	@override String noOfSets({required num count, required Object noOfSets}) => (_root._cardinalResolver ?? _pluralCardinalDe)(count,
+	@override String errorLoadingMocList({required Object error}) => 'Es gab einen Fehler beim Laden deiner Moc Liste:\n$error';
+	@override String noOfSets({required num count}) => (_root._cardinalResolver ?? _pluralCardinalDe)(count,
 		zero: 'keine Sets',
-		one: '$noOfSets Set',
-		other: '$noOfSets Sets',
+		one: '$count Set',
+		other: '$count Sets',
+	);
+	@override String noOfParts({required num count}) => (_root._cardinalResolver ?? _pluralCardinalDe)(count,
+		zero: 'keine Teile',
+		one: '$count Teil',
+		other: '$count Teile',
 	);
 	@override String get dismiss => 'Verwerfen';
 	@override String get toSettingsPage => 'Zu den Einstellungen';
 	@override String get errMsgMissingCredentials => 'Du hast noch keine Zugangsdaten für Rebrickable hinterlegt. Bitte trage sie in den Einstellungen ein.';
 	@override String get errMsgWrongCredentials => 'Du hast die falschen Zugangsdaten für Rebrickable hinterlegt. Bitte trage die korrekten Daten in den Einstellungen ein.';
+	@override String get settings => 'Einstellungen';
+	@override String get username => 'Benutzername';
+	@override String get password => 'Passwort';
+	@override String get apiKey => 'API Schlüssel';
+	@override String get enterUsername => 'Gib deinen Benutzernamen ein';
+	@override String get enterPassword => 'Gib dein Passwort ein';
+	@override String get enterApiKey => 'Gib deinen API Schlüssel ein';
+	@override String get close => 'Schließen';
 }
 
 /// Flat map(s) containing all translations.
@@ -431,15 +459,29 @@ extension on _StringEn {
 		return {
 			'home': 'Home',
 			'errorLoadingSetList': ({required Object error}) => 'There was an error while loading your set lists:\n$error',
-			'noOfSets': ({required num count, required Object noOfSets}) => (_root._cardinalResolver ?? _pluralCardinalEn)(count,
+			'errorLoadingMocList': ({required Object error}) => 'There was an error while loading your moc list:\n$error',
+			'noOfSets': ({required num count}) => (_root._cardinalResolver ?? _pluralCardinalEn)(count,
 				zero: 'No sets',
-				one: '$noOfSets set',
-				other: '$noOfSets sets',
+				one: '$count set',
+				other: '$count sets',
+			),
+			'noOfParts': ({required num count}) => (_root._cardinalResolver ?? _pluralCardinalEn)(count,
+				zero: 'No parts',
+				one: '$count part',
+				other: '$count parts',
 			),
 			'dismiss': 'Dismiss',
 			'toSettingsPage': 'Go to settings',
 			'errMsgMissingCredentials': 'You have not yet configured your rebrickable credentials. Please go to the settings page and enter them.',
 			'errMsgWrongCredentials': 'You have entered wrong rebrickable credentials. Please go to the settings page and enter the correct ones.',
+			'settings': 'Settings',
+			'username': 'Username',
+			'password': 'Password',
+			'apiKey': 'API Key',
+			'enterUsername': 'Enter username',
+			'enterPassword': 'Enter password',
+			'enterApiKey': 'Enter API key',
+			'close': 'Close',
 		};
 	}
 }
@@ -449,15 +491,29 @@ extension on _StringDe {
 		return {
 			'home': 'Startseite',
 			'errorLoadingSetList': ({required Object error}) => 'Es gab einen Fehler beim Laden deiner Set Listen:\n$error',
-			'noOfSets': ({required num count, required Object noOfSets}) => (_root._cardinalResolver ?? _pluralCardinalDe)(count,
+			'errorLoadingMocList': ({required Object error}) => 'Es gab einen Fehler beim Laden deiner Moc Liste:\n$error',
+			'noOfSets': ({required num count}) => (_root._cardinalResolver ?? _pluralCardinalDe)(count,
 				zero: 'keine Sets',
-				one: '$noOfSets Set',
-				other: '$noOfSets Sets',
+				one: '$count Set',
+				other: '$count Sets',
+			),
+			'noOfParts': ({required num count}) => (_root._cardinalResolver ?? _pluralCardinalDe)(count,
+				zero: 'keine Teile',
+				one: '$count Teil',
+				other: '$count Teile',
 			),
 			'dismiss': 'Verwerfen',
 			'toSettingsPage': 'Zu den Einstellungen',
 			'errMsgMissingCredentials': 'Du hast noch keine Zugangsdaten für Rebrickable hinterlegt. Bitte trage sie in den Einstellungen ein.',
 			'errMsgWrongCredentials': 'Du hast die falschen Zugangsdaten für Rebrickable hinterlegt. Bitte trage die korrekten Daten in den Einstellungen ein.',
+			'settings': 'Einstellungen',
+			'username': 'Benutzername',
+			'password': 'Passwort',
+			'apiKey': 'API Schlüssel',
+			'enterUsername': 'Gib deinen Benutzernamen ein',
+			'enterPassword': 'Gib dein Passwort ein',
+			'enterApiKey': 'Gib deinen API Schlüssel ein',
+			'close': 'Schließen',
 		};
 	}
 }

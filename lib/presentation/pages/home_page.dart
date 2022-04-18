@@ -83,7 +83,7 @@ class HomePage extends StatelessWidget {
       leading: const Icon(Icons.list),
       title: Text(setList.name),
       subtitle: Text(
-        t.noOfSets(count: setList.numberSets, noOfSets: setList.numberSets),
+        t.noOfSets(count: setList.numberSets),
       ),
       onTap: () => AutoRouter.of(context).push(
         SetListRoute(setList: setList),

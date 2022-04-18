@@ -7,6 +7,7 @@ import 'package:brick_app_v2/injection.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:brick_app_v2/i18n/string.g.dart';
 
 class SetListPage extends StatelessWidget {
   final SetList setList;
@@ -21,7 +22,8 @@ class SetListPage extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('${setList.name} (${setList.numberSets} sets)'),
+              title: Text(
+                  '${setList.name} (${t.noOfSets(count: setList.numberSets)})'),
             ),
             body: _bodyFrom(context, state),
           );
@@ -50,7 +52,8 @@ class SetListPage extends StatelessWidget {
     return Center(
       key: const Key('setListError'),
       child: Text(
-          'There was an error while loading your set lists: ${state.failure.message}'),
+        t.errorLoadingSetList(error: state.failure.message),
+      ),
     );
   }
 
@@ -87,7 +90,7 @@ class SetListPage extends StatelessWidget {
               set.name,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
-            Text('${set.numParts} parts'),
+            Text(t.noOfParts(count: set.numParts)),
             const SizedBox(height: 8.0),
           ]),
         ),
