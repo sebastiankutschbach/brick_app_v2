@@ -25,7 +25,7 @@ jobs:
         uses: stelynx/dart-full-coverage@v1.0.5
         with:
           package: brick_app_v2
-          ignore: '*_state.dart,*.gr.dart'
+          ignore: '*_state.dart,*.gr.dart,*.g.dart,*.freezed.dart'
       - name: Add credentials
         run: 'echo "${{ secrets.API_GW_CREDENTIALS }}" > lib/credentials/api_gateway.dart'
       - name: Install pub packages
