@@ -32,23 +32,19 @@ class SetListPage extends StatelessWidget {
     );
   }
 
-  _bodyFrom(BuildContext context, SetListPageState state) {
-    switch (state.runtimeType) {
-      case SetListPageLoading:
-        return _loadingBody(context, state as SetListPageLoading);
-      case SetListPageError:
-        return _errorBody(context, state as SetListPageError);
-      case SetListPageLoaded:
-        return _loadedBody(context, state as SetListPageLoaded);
-    }
+  Widget _bodyFrom(BuildContext context, SetListPageState state) {
+    return state.map(
+        loading: (state) => _loadingBody(context, state),
+        error: (state) => _errorBody(context, state),
+        loaded: (state) => _loadedBody(context, state));
   }
 
-  _loadingBody(BuildContext context, SetListPageLoading state) {
+  Widget _loadingBody(BuildContext context, SetListPageLoading state) {
     return const Center(
         key: Key('setListLoading'), child: CircularProgressIndicator());
   }
 
-  _errorBody(BuildContext context, SetListPageError state) {
+  Widget _errorBody(BuildContext context, SetListPageError state) {
     return Center(
       key: const Key('setListError'),
       child: Text(
@@ -57,7 +53,7 @@ class SetListPage extends StatelessWidget {
     );
   }
 
-  _loadedBody(BuildContext context, SetListPageLoaded state) {
+  Widget _loadedBody(BuildContext context, SetListPageLoaded state) {
     return DecoratedBox(
       decoration: BoxDecoration(color: Colors.grey[300]),
       child: Center(
@@ -70,7 +66,7 @@ class SetListPage extends StatelessWidget {
     );
   }
 
-  _buildSetCard(BuildContext context, BrickSet set) {
+  Widget _buildSetCard(BuildContext context, BrickSet set) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(

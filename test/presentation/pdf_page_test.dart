@@ -25,7 +25,7 @@ main() {
     'shows moc name in app bar',
     (WidgetTester tester) async {
       whenListen(pdfPageCubit, const Stream<PdfPageState>.empty(),
-          initialState: PdfPageLoading());
+          initialState: const PdfPageLoading());
       await tester.pumpWidget(_createTestableWidget());
 
       find.descendant(

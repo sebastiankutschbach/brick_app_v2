@@ -42,23 +42,19 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  _bodyFrom(BuildContext context, HomePageState state) {
-    switch (state.runtimeType) {
-      case HomePageLoading:
-        return _loadingBody(context, state as HomePageLoading);
-      case HomePageError:
-        return _errorBody(context, state as HomePageError);
-      case HomePageLoaded:
-        return _loadedBody(context, state as HomePageLoaded);
-    }
+  Widget _bodyFrom(BuildContext context, HomePageState state) {
+    return state.map(
+        loading: (state) => _loadingBody(context, state),
+        error: (state) => _errorBody(context, state),
+        loaded: (state) => _loadedBody(context, state));
   }
 
-  _loadingBody(BuildContext context, HomePageLoading state) {
+  Widget _loadingBody(BuildContext context, HomePageLoading state) {
     return const Center(
         key: Key('setListLoading'), child: CircularProgressIndicator());
   }
 
-  _errorBody(BuildContext context, HomePageError state) {
+  Widget _errorBody(BuildContext context, HomePageError state) {
     final errMsg = state.failure is CredentialsMissingFailure
         ? Text(t.errMsgMissingCredentials)
         : state.failure is WrongCredentialsFailure
@@ -67,7 +63,7 @@ class HomePage extends StatelessWidget {
     return Center(key: const Key('setListError'), child: errMsg);
   }
 
-  _loadedBody(BuildContext context, HomePageLoaded state) {
+  Widget _loadedBody(BuildContext context, HomePageLoaded state) {
     return Center(
       child: ListView.builder(
         itemBuilder: (context, index) =>
@@ -77,7 +73,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  _buildSetListTile(BuildContext context, SetList setList) {
+  Widget _buildSetListTile(BuildContext context, SetList setList) {
     return ListTile(
       key: Key('setListTile-${setList.id}'),
       leading: const Icon(Icons.list),

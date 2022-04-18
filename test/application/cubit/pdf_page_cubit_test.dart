@@ -29,7 +29,7 @@ main() {
         return PdfPageCubit(mocRepository);
       },
       act: (cubit) => cubit.getPdfUrl(setNum, mocNum),
-      expect: () => [PdfPageLoading(), PdfPageLoaded(url)]);
+      expect: () => [const PdfPageLoading(), PdfPageLoaded(url)]);
 
   blocTest<PdfPageCubit, PdfPageState>(
       'getPdf emits loading state and error state on failed load',
@@ -40,5 +40,5 @@ main() {
         return PdfPageCubit(mocRepository);
       },
       act: (cubit) => cubit.getPdfUrl(setNum, mocNum),
-      expect: () => [PdfPageLoading(), const PdfPageError(failure)]);
+      expect: () => [const PdfPageLoading(), const PdfPageError(failure)]);
 }

@@ -31,30 +31,26 @@ class MocListPage extends StatelessWidget {
     );
   }
 
-  _bodyFrom(BuildContext context, MocListPageState state) {
-    switch (state.runtimeType) {
-      case MocListPageLoading:
-        return _loadingBody(context, state as MocListPageLoading);
-      case MocListPageError:
-        return _errorBody(context, state as MocListPageError);
-      case MocListPageLoaded:
-        return _loadedBody(context, state as MocListPageLoaded);
-    }
+  Widget _bodyFrom(BuildContext context, MocListPageState state) {
+    return state.map(
+        loading: (state) => _loadingBody(context, state),
+        error: (state) => _errorBody(context, state),
+        loaded: (state) => _loadedBody(context, state));
   }
 
-  _loadingBody(BuildContext context, MocListPageLoading state) {
+  Widget _loadingBody(BuildContext context, MocListPageLoading state) {
     return const Center(
         key: Key('mocListLoading'), child: CircularProgressIndicator());
   }
 
-  _errorBody(BuildContext context, MocListPageError state) {
+  Widget _errorBody(BuildContext context, MocListPageError state) {
     return Center(
       key: const Key('mocListError'),
       child: Text(t.errorLoadingMocList(error: state.failure.message)),
     );
   }
 
-  _loadedBody(BuildContext context, MocListPageLoaded state) {
+  Widget _loadedBody(BuildContext context, MocListPageLoaded state) {
     final mocsWithInstructions =
         state.mocs.where((moc) => moc.hasInstruction).toList(growable: false);
     return DecoratedBox(
@@ -69,7 +65,7 @@ class MocListPage extends StatelessWidget {
     );
   }
 
-  _buildSetCard(BuildContext context, Moc moc) {
+  Widget _buildSetCard(BuildContext context, Moc moc) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(

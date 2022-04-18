@@ -32,7 +32,7 @@ main() {
   }
 
   testWidgets(
-    "does show one tile per set list",
+    "shows one tile per set list",
     (WidgetTester tester) async {
       whenListen(cubit, const Stream<SetListPageState>.empty(),
           initialState: SetListPageLoaded(sets));
@@ -65,7 +65,7 @@ main() {
     "does show loading spinner during loading",
     (WidgetTester tester) async {
       whenListen(cubit, const Stream<SetListPageState>.empty(),
-          initialState: SetListPageLoading());
+          initialState: const SetListPageLoading());
       await tester.pumpWidget(_createTestableWidget());
 
       expect(find.byKey(const Key('setListLoading')), findsOneWidget);

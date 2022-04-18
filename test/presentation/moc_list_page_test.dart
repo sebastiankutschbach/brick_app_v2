@@ -78,7 +78,7 @@ main() {
     "does show loading spinner during loading",
     (WidgetTester tester) async {
       whenListen(cubit, const Stream<MocListPageState>.empty(),
-          initialState: MocListPageLoading());
+          initialState: const MocListPageLoading());
       await tester.pumpWidget(_createTestableWidget());
 
       expect(find.byKey(const Key('mocListLoading')), findsOneWidget);

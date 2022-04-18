@@ -35,7 +35,7 @@ main() {
     },
     act: (cubit) => cubit.loadMocList(setNum),
     expect: () => [
-      MocListPageLoading(),
+      const MocListPageLoading(),
       MocListPageLoaded([testMoc])
     ],
   );
@@ -48,6 +48,6 @@ main() {
       return MocListPageCubit(brickSetRepository, mocRepository);
     },
     act: (cubit) => cubit.loadMocList(setNum),
-    expect: () => [MocListPageLoading(), const MocListPageError(failure)],
+    expect: () => [const MocListPageLoading(), const MocListPageError(failure)],
   );
 }

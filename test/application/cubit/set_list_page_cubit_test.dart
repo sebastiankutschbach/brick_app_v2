@@ -37,7 +37,7 @@ main() {
       return SetListPageCubit(setListRepository, authenticationCubit);
     },
     act: (cubit) => cubit.loadSetList(setListId),
-    expect: () => [SetListPageLoading(), SetListPageLoaded(sets)],
+    expect: () => [const SetListPageLoading(), SetListPageLoaded(sets)],
   );
 
   blocTest<SetListPageCubit, SetListPageState>(
@@ -48,6 +48,6 @@ main() {
       return SetListPageCubit(setListRepository, authenticationCubit);
     },
     act: (cubit) => cubit.loadSetList(setListId),
-    expect: () => [SetListPageLoading(), const SetListPageError(failure)],
+    expect: () => [const SetListPageLoading(), const SetListPageError(failure)],
   );
 }

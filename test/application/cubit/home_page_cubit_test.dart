@@ -40,9 +40,9 @@ main() {
     },
     act: (cubit) => cubit.loadSetLists(),
     expect: () => [
-      HomePageLoading(),
-      HomePageLoaded(
-        const [aSetList],
+      const HomePageLoading(),
+      const HomePageLoaded(
+        [aSetList],
       )
     ],
   );
@@ -56,9 +56,9 @@ main() {
     },
     act: (cubit) => cubit.loadSetLists(),
     expect: () => [
-      HomePageLoading(),
-      HomePageError(
-        const Failure('error'),
+      const HomePageLoading(),
+      const HomePageError(
+        Failure('error'),
       ),
     ],
   );

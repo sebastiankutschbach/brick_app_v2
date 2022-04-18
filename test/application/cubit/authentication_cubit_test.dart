@@ -34,7 +34,7 @@ main() {
       build: () =>
           AuthenticationCubit(dio, userTokenRepository, mockSettingsCubit),
       verify: (cubit) =>
-          expect(cubit.state is AuthenticationUnauthenticated, true));
+          expect(cubit.state is AuthenticationStateUnauthenticated, true));
 
   blocTest<AuthenticationCubit, AuthenticationState>(
       'emits authenticated on successful login',
@@ -46,7 +46,7 @@ main() {
         return AuthenticationCubit(dio, userTokenRepository, mockSettingsCubit);
       },
       act: (cubit) => cubit.login(),
-      expect: () => [const AuthenticationAuthenticated(userToken)],
+      expect: () => [const AuthenticationStateAuthenticated(userToken)],
       verify: (cubit) =>
           expect(dio.options.headers['Authorization'], 'key $apiKey'));
 
@@ -59,7 +59,7 @@ main() {
         return AuthenticationCubit(dio, userTokenRepository, mockSettingsCubit);
       },
       act: (cubit) => cubit.login(),
-      expect: () => [AuthenticationUnauthenticated()],
+      expect: () => [const AuthenticationStateUnauthenticated()],
       verify: (cubit) => expect(dio.options.headers['Authorization'], null));
 
   blocTest<AuthenticationCubit, AuthenticationState>(
@@ -77,6 +77,6 @@ main() {
         loginResult.fold((failure) => failure is WrongCredentialsFailure,
             (r) => fail('should not happen'));
       },
-      expect: () => [AuthenticationUnauthenticated()],
+      expect: () => [const AuthenticationStateUnauthenticated()],
       verify: (cubit) => expect(dio.options.headers['Authorization'], null));
 }

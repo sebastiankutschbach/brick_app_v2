@@ -3,10 +3,11 @@ import 'package:brick_app_v2/domain/failure.dart';
 import 'package:brick_app_v2/domain/moc.dart';
 import 'package:brick_app_v2/infrastructure/moc_repository.dart';
 import 'package:brick_app_v2/infrastructure/brick_set_repository.dart';
-import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'moc_list_page_state.dart';
+part 'moc_list_page_cubit.freezed.dart';
 
 @Injectable()
 class MocListPageCubit extends Cubit<MocListPageState> {
@@ -14,10 +15,10 @@ class MocListPageCubit extends Cubit<MocListPageState> {
   final MocRepositoryFacade _mocRepository;
 
   MocListPageCubit(this._brickSetRepository, this._mocRepository)
-      : super(MocListPageLoading());
+      : super(const MocListPageLoading());
 
   Future<void> loadMocList(String setNum) async {
-    emit(MocListPageLoading());
+    emit(const MocListPageLoading());
 
     final mocsResponse = await _brickSetRepository.loadMocs(setNum: setNum);
     mocsResponse.fold((failure) => emit(MocListPageError(failure)),

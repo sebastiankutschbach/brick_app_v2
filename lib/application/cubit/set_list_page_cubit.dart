@@ -3,10 +3,12 @@ import 'package:brick_app_v2/application/cubit/authentication_cubit.dart';
 import 'package:brick_app_v2/domain/failure.dart';
 import 'package:brick_app_v2/domain/brick_set.dart';
 import 'package:brick_app_v2/infrastructure/set_list_repository.dart';
-import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'set_list_page_state.dart';
+
+part 'set_list_page_cubit.freezed.dart';
 
 @Injectable()
 class SetListPageCubit extends Cubit<SetListPageState> {
@@ -14,10 +16,10 @@ class SetListPageCubit extends Cubit<SetListPageState> {
   final AuthenticationCubit _authenticationCubit;
 
   SetListPageCubit(this._setListRepository, this._authenticationCubit)
-      : super(SetListPageLoading());
+      : super(const SetListPageLoading());
 
   Future<void> loadSetList(int setListId) async {
-    emit(SetListPageLoading());
+    emit(const SetListPageLoading());
     final userTokenResponse = await _authenticationCubit.userToken;
     userTokenResponse.fold((failure) => emit(SetListPageError(failure)),
         (userToken) async {

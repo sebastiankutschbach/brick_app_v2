@@ -24,23 +24,19 @@ class PdfPage extends StatelessWidget {
     );
   }
 
-  _bodyFrom(BuildContext context, PdfPageState state) {
-    switch (state.runtimeType) {
-      case PdfPageLoading:
-        return _loadingBody(context, state as PdfPageLoading);
-      case PdfPageError:
-        return _errorBody(context, state as PdfPageError);
-      case PdfPageLoaded:
-        return _loadedBody(context, state as PdfPageLoaded);
-    }
+  Widget _bodyFrom(BuildContext context, PdfPageState state) {
+    return state.map(
+        loading: (state) => _loadingBody(context, state),
+        error: (state) => _errorBody(context, state),
+        loaded: (state) => _loadedBody(context, state));
   }
 
-  _loadingBody(BuildContext context, PdfPageLoading state) {
+  Widget _loadingBody(BuildContext context, PdfPageLoading state) {
     return const Center(
         key: Key('pdfLoading'), child: CircularProgressIndicator());
   }
 
-  _errorBody(BuildContext context, PdfPageError state) {
+  Widget _errorBody(BuildContext context, PdfPageError state) {
     return Center(
       key: const Key('pdfError'),
       child: Text(
@@ -48,7 +44,7 @@ class PdfPage extends StatelessWidget {
     );
   }
 
-  _loadedBody(BuildContext context, PdfPageLoaded state) {
+  Widget _loadedBody(BuildContext context, PdfPageLoaded state) {
     return SfPdfViewer.network(
       state.url.toString(),
       canShowScrollHead: false,

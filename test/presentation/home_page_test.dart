@@ -34,7 +34,7 @@ main() {
     "does show one tile per set list",
     (WidgetTester tester) async {
       whenListen(cubit, const Stream<HomePageState>.empty(),
-          initialState: HomePageLoaded(setLists));
+          initialState: const HomePageLoaded(setLists));
       await tester.pumpWidget(_createTestableWidget());
 
       expect(find.byKey(Key('setListTile-${setLists[0].id}')), findsOneWidget);
@@ -46,7 +46,7 @@ main() {
     "navigates to set list page",
     (WidgetTester tester) async {
       whenListen(cubit, const Stream<HomePageState>.empty(),
-          initialState: HomePageLoaded(setLists));
+          initialState: const HomePageLoaded(setLists));
       await tester.pumpWidget(_createTestableWidget());
 
       await tester.tap(
@@ -64,7 +64,7 @@ main() {
     "does show loading spinner during loading",
     (WidgetTester tester) async {
       whenListen(cubit, const Stream<HomePageState>.empty(),
-          initialState: HomePageLoading());
+          initialState: const HomePageLoading());
       await tester.pumpWidget(_createTestableWidget());
 
       expect(find.byKey(const Key('setListLoading')), findsOneWidget);
@@ -75,7 +75,7 @@ main() {
     "does show error if loading failed",
     (WidgetTester tester) async {
       whenListen(cubit, const Stream<HomePageState>.empty(),
-          initialState: HomePageError(const Failure('message')));
+          initialState: const HomePageError(Failure('message')));
       await tester.pumpWidget(_createTestableWidget());
 
       expect(find.byKey(const Key('setListError')), findsOneWidget);
@@ -88,8 +88,8 @@ main() {
       whenListen(
           cubit,
           Stream.fromIterable(
-              [HomePageError(const CredentialsMissingFailure('message'))]),
-          initialState: HomePageLoading());
+              const [HomePageError(CredentialsMissingFailure('message'))]),
+          initialState: const HomePageLoading());
       await tester.pumpWidget(_createTestableWidget());
 
       await tester.pumpAndSettle();
@@ -108,8 +108,8 @@ main() {
       whenListen(
           cubit,
           Stream.fromIterable(
-              [HomePageError(const WrongCredentialsFailure('message'))]),
-          initialState: HomePageLoading());
+              [const HomePageError(WrongCredentialsFailure('message'))]),
+          initialState: const HomePageLoading());
       await tester.pumpWidget(_createTestableWidget());
 
       await tester.pumpAndSettle();
