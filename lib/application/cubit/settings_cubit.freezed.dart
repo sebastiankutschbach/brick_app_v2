@@ -12,34 +12,11 @@ part of 'settings_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 SettingsState _$SettingsStateFromJson(Map<String, dynamic> json) {
   return _SettingsState.fromJson(json);
 }
-
-/// @nodoc
-class _$SettingsStateTearOff {
-  const _$SettingsStateTearOff();
-
-  _SettingsState call(
-      {String rebrickableUsername = '',
-      String rebrickablePassword = '',
-      String rebrickableApiKey = ''}) {
-    return _SettingsState(
-      rebrickableUsername: rebrickableUsername,
-      rebrickablePassword: rebrickablePassword,
-      rebrickableApiKey: rebrickableApiKey,
-    );
-  }
-
-  SettingsState fromJson(Map<String, Object?> json) {
-    return SettingsState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $SettingsState = _$SettingsStateTearOff();
 
 /// @nodoc
 mixin _$SettingsState {
@@ -154,14 +131,14 @@ class _$_SettingsState implements _SettingsState {
   factory _$_SettingsState.fromJson(Map<String, dynamic> json) =>
       _$$_SettingsStateFromJson(json);
 
-  @JsonKey()
   @override
+  @JsonKey()
   final String rebrickableUsername;
-  @JsonKey()
   @override
+  @JsonKey()
   final String rebrickablePassword;
-  @JsonKey()
   @override
+  @JsonKey()
   final String rebrickableApiKey;
 
   @override
@@ -182,6 +159,7 @@ class _$_SettingsState implements _SettingsState {
                 .equals(other.rebrickableApiKey, rebrickableApiKey));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -202,19 +180,19 @@ class _$_SettingsState implements _SettingsState {
 
 abstract class _SettingsState implements SettingsState {
   const factory _SettingsState(
-      {String rebrickableUsername,
-      String rebrickablePassword,
-      String rebrickableApiKey}) = _$_SettingsState;
+      {final String rebrickableUsername,
+      final String rebrickablePassword,
+      final String rebrickableApiKey}) = _$_SettingsState;
 
   factory _SettingsState.fromJson(Map<String, dynamic> json) =
       _$_SettingsState.fromJson;
 
   @override
-  String get rebrickableUsername;
+  String get rebrickableUsername => throw _privateConstructorUsedError;
   @override
-  String get rebrickablePassword;
+  String get rebrickablePassword => throw _privateConstructorUsedError;
   @override
-  String get rebrickableApiKey;
+  String get rebrickableApiKey => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SettingsStateCopyWith<_SettingsState> get copyWith =>

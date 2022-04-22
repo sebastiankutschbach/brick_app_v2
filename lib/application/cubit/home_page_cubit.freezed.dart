@@ -12,31 +12,7 @@ part of 'home_page_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$HomePageStateTearOff {
-  const _$HomePageStateTearOff();
-
-  HomePageLoading loading() {
-    return const HomePageLoading();
-  }
-
-  HomePageError error(Failure failure) {
-    return HomePageError(
-      failure,
-    );
-  }
-
-  HomePageLoaded loaded(List<SetList> setLists) {
-    return HomePageLoaded(
-      setLists,
-    );
-  }
-}
-
-/// @nodoc
-const $HomePageState = _$HomePageStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$HomePageState {
@@ -346,9 +322,9 @@ class _$HomePageError implements HomePageError {
 }
 
 abstract class HomePageError implements HomePageState {
-  const factory HomePageError(Failure failure) = _$HomePageError;
+  const factory HomePageError(final Failure failure) = _$HomePageError;
 
-  Failure get failure;
+  Failure get failure => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $HomePageErrorCopyWith<HomePageError> get copyWith =>
       throw _privateConstructorUsedError;
@@ -389,10 +365,14 @@ class _$HomePageLoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$HomePageLoaded implements HomePageLoaded {
-  const _$HomePageLoaded(this.setLists);
+  const _$HomePageLoaded(final List<SetList> setLists) : _setLists = setLists;
 
+  final List<SetList> _setLists;
   @override
-  final List<SetList> setLists;
+  List<SetList> get setLists {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_setLists);
+  }
 
   @override
   String toString() {
@@ -486,9 +466,9 @@ class _$HomePageLoaded implements HomePageLoaded {
 }
 
 abstract class HomePageLoaded implements HomePageState {
-  const factory HomePageLoaded(List<SetList> setLists) = _$HomePageLoaded;
+  const factory HomePageLoaded(final List<SetList> setLists) = _$HomePageLoaded;
 
-  List<SetList> get setLists;
+  List<SetList> get setLists => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $HomePageLoadedCopyWith<HomePageLoaded> get copyWith =>
       throw _privateConstructorUsedError;

@@ -12,31 +12,7 @@ part of 'moc_list_page_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$MocListPageStateTearOff {
-  const _$MocListPageStateTearOff();
-
-  MocListPageLoading loading() {
-    return const MocListPageLoading();
-  }
-
-  MocListPageError error(Failure failure) {
-    return MocListPageError(
-      failure,
-    );
-  }
-
-  MocListPageLoaded loaded(List<Moc> mocs) {
-    return MocListPageLoaded(
-      mocs,
-    );
-  }
-}
-
-/// @nodoc
-const $MocListPageState = _$MocListPageStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$MocListPageState {
@@ -346,9 +322,9 @@ class _$MocListPageError implements MocListPageError {
 }
 
 abstract class MocListPageError implements MocListPageState {
-  const factory MocListPageError(Failure failure) = _$MocListPageError;
+  const factory MocListPageError(final Failure failure) = _$MocListPageError;
 
-  Failure get failure;
+  Failure get failure => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $MocListPageErrorCopyWith<MocListPageError> get copyWith =>
       throw _privateConstructorUsedError;
@@ -389,10 +365,14 @@ class _$MocListPageLoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$MocListPageLoaded implements MocListPageLoaded {
-  const _$MocListPageLoaded(this.mocs);
+  const _$MocListPageLoaded(final List<Moc> mocs) : _mocs = mocs;
 
+  final List<Moc> _mocs;
   @override
-  final List<Moc> mocs;
+  List<Moc> get mocs {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_mocs);
+  }
 
   @override
   String toString() {
@@ -486,9 +466,9 @@ class _$MocListPageLoaded implements MocListPageLoaded {
 }
 
 abstract class MocListPageLoaded implements MocListPageState {
-  const factory MocListPageLoaded(List<Moc> mocs) = _$MocListPageLoaded;
+  const factory MocListPageLoaded(final List<Moc> mocs) = _$MocListPageLoaded;
 
-  List<Moc> get mocs;
+  List<Moc> get mocs => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $MocListPageLoadedCopyWith<MocListPageLoaded> get copyWith =>
       throw _privateConstructorUsedError;

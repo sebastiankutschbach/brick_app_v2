@@ -12,31 +12,7 @@ part of 'set_list_page_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$SetListPageStateTearOff {
-  const _$SetListPageStateTearOff();
-
-  SetListPageLoading loading() {
-    return const SetListPageLoading();
-  }
-
-  SetListPageError error(Failure failure) {
-    return SetListPageError(
-      failure,
-    );
-  }
-
-  SetListPageLoaded loaded(List<BrickSet> sets) {
-    return SetListPageLoaded(
-      sets,
-    );
-  }
-}
-
-/// @nodoc
-const $SetListPageState = _$SetListPageStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$SetListPageState {
@@ -346,9 +322,9 @@ class _$SetListPageError implements SetListPageError {
 }
 
 abstract class SetListPageError implements SetListPageState {
-  const factory SetListPageError(Failure failure) = _$SetListPageError;
+  const factory SetListPageError(final Failure failure) = _$SetListPageError;
 
-  Failure get failure;
+  Failure get failure => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SetListPageErrorCopyWith<SetListPageError> get copyWith =>
       throw _privateConstructorUsedError;
@@ -389,10 +365,14 @@ class _$SetListPageLoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SetListPageLoaded implements SetListPageLoaded {
-  const _$SetListPageLoaded(this.sets);
+  const _$SetListPageLoaded(final List<BrickSet> sets) : _sets = sets;
 
+  final List<BrickSet> _sets;
   @override
-  final List<BrickSet> sets;
+  List<BrickSet> get sets {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_sets);
+  }
 
   @override
   String toString() {
@@ -486,9 +466,10 @@ class _$SetListPageLoaded implements SetListPageLoaded {
 }
 
 abstract class SetListPageLoaded implements SetListPageState {
-  const factory SetListPageLoaded(List<BrickSet> sets) = _$SetListPageLoaded;
+  const factory SetListPageLoaded(final List<BrickSet> sets) =
+      _$SetListPageLoaded;
 
-  List<BrickSet> get sets;
+  List<BrickSet> get sets => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SetListPageLoadedCopyWith<SetListPageLoaded> get copyWith =>
       throw _privateConstructorUsedError;

@@ -12,25 +12,7 @@ part of 'authentication_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$AuthenticationStateTearOff {
-  const _$AuthenticationStateTearOff();
-
-  AuthenticationStateUnauthenticated unauthenticated() {
-    return const AuthenticationStateUnauthenticated();
-  }
-
-  AuthenticationStateAuthenticated authenticated(String userToken) {
-    return AuthenticationStateAuthenticated(
-      userToken,
-    );
-  }
-}
-
-/// @nodoc
-const $AuthenticationState = _$AuthenticationStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$AuthenticationState {
@@ -340,10 +322,10 @@ class _$AuthenticationStateAuthenticated
 }
 
 abstract class AuthenticationStateAuthenticated implements AuthenticationState {
-  const factory AuthenticationStateAuthenticated(String userToken) =
+  const factory AuthenticationStateAuthenticated(final String userToken) =
       _$AuthenticationStateAuthenticated;
 
-  String get userToken;
+  String get userToken => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AuthenticationStateAuthenticatedCopyWith<AuthenticationStateAuthenticated>
       get copyWith => throw _privateConstructorUsedError;

@@ -12,31 +12,7 @@ part of 'pdf_page_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$PdfPageStateTearOff {
-  const _$PdfPageStateTearOff();
-
-  PdfPageLoading loading() {
-    return const PdfPageLoading();
-  }
-
-  PdfPageError error(Failure failure) {
-    return PdfPageError(
-      failure,
-    );
-  }
-
-  PdfPageLoaded loaded(Uri url) {
-    return PdfPageLoaded(
-      url,
-    );
-  }
-}
-
-/// @nodoc
-const $PdfPageState = _$PdfPageStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$PdfPageState {
@@ -344,9 +320,9 @@ class _$PdfPageError implements PdfPageError {
 }
 
 abstract class PdfPageError implements PdfPageState {
-  const factory PdfPageError(Failure failure) = _$PdfPageError;
+  const factory PdfPageError(final Failure failure) = _$PdfPageError;
 
-  Failure get failure;
+  Failure get failure => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PdfPageErrorCopyWith<PdfPageError> get copyWith =>
       throw _privateConstructorUsedError;
@@ -483,9 +459,9 @@ class _$PdfPageLoaded implements PdfPageLoaded {
 }
 
 abstract class PdfPageLoaded implements PdfPageState {
-  const factory PdfPageLoaded(Uri url) = _$PdfPageLoaded;
+  const factory PdfPageLoaded(final Uri url) = _$PdfPageLoaded;
 
-  Uri get url;
+  Uri get url => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PdfPageLoadedCopyWith<PdfPageLoaded> get copyWith =>
       throw _privateConstructorUsedError;
