@@ -19,7 +19,7 @@ dependencies:
   flutter_bloc: ^8.0.1
   bloc: ^8.0.3
   hydrated_bloc: ^8.1.0
-  path_provider: ^2.0.9
+  path_provider: ^2.0.13
   equatable: ^2.0.3
   dartz: ^0.10.1
   uri: ^1.0.0
